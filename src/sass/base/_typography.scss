@@ -1,0 +1,13 @@
+$font_main: 'Raleway', sans-serif;
+$font_logo: 'cheyenne_sanslight', sans-serif;
+
+// ============================================================================================
+
+@font-face {
+	font-family: 'cheyenne_sanslight';
+	src: url('./../fonts/hinted-cheyennesans-light-webfont.woff2') format('woff2'),
+		url('./../fonts/hinted-cheyennesans-light-webfont.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}

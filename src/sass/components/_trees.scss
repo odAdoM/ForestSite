@@ -1,0 +1,226 @@
+$size: 4px;
+$clr: #000;
+$opacityDest: 1;
+$opacityStart: 1;
+$rounded: 30%;
+$easing: ease-in-out; //cubic-bezier(0.47, 1.54, 0.41, 0.9); //cubic-bezier(0.175, 0.885, 0.32, 1.275); cubic-bezier(0.47, 1.64, 0.41, 0.8)
+
+.tree.one {
+	left: 15%;
+}
+
+.tree.two {
+	left: 15%;
+	transform: scaleX(0.8);
+	animation: shaky-2 2.8s infinite both ease-out;
+	animation-composition: add;
+	animation-play-state: paused;
+}
+.tree.three {
+	left: 90%;
+	transform: scale(0.8, 0.9);
+	animation: shaky-1 2s infinite both ease-out 0.3s;
+	animation-composition: add;
+	animation-play-state: paused;
+}
+.tree.four {
+	left: 150px;
+	transform: scale(0.8, 0.9);
+}
+.tree.five {
+	left: 200px;
+	transform: scale(1, 0.8);
+}
+.tree.six {
+	left: 220px;
+	transform: scale(0.5);
+}
+.tree.seven {
+	left: 250px;
+	transform: scale(0.5, 1);
+}
+.tree.eight {
+	left: 260px;
+	transform: scale(0.6, 0.7);
+}
+.tree.nine {
+	left: 80%;
+
+	& > span:not(.tri-ground),
+	& > span:not(.tri-ground)::before,
+	& > span:not(.tri-ground)::after {
+		border-top-right-radius: 90%;
+	}
+}
+.tree.ten {
+	left: 90%;
+
+	& > span:not(.tri-ground),
+	& > span:not(.tri-ground)::before,
+	& > span:not(.tri-ground)::after {
+		border-top-right-radius: 100%;
+	}
+	transform: scale(1.2, 1);
+}
+
+.trees {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba($color: #cc5f5f, $alpha: 0.3); //transparent;
+	z-index: 100;
+	// overflow: hidden;
+
+	&:hover .triangleTree.tri-ground {
+		bottom: 0px;
+		opacity: $opacityDest;
+	}
+	&:hover .triangleTree.tri-2 {
+		bottom: calc($size * 2);
+		opacity: $opacityDest;
+	}
+	&:hover .triangleTree.tri-3 {
+		bottom: calc($size * 4);
+		opacity: $opacityDest;
+	}
+	&:hover .triangleTree.tri-4 {
+		bottom: calc($size * 6);
+		opacity: $opacityDest;
+	}
+	&:hover .tree.three {
+		animation-play-state: running;
+	}
+	&:hover .tree.two {
+		animation-play-state: running;
+	}
+}
+
+//-==========================================================
+//-==========================================================
+
+.tree {
+	pointer-events: none;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform-origin: center bottom;
+}
+
+.triangleTree {
+	position: absolute;
+	background-color: $clr;
+	pointer-events: none;
+}
+.triangleTree:before,
+.triangleTree:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+	transition: bottom $easing;
+}
+.triangleTree,
+.triangleTree:before,
+.triangleTree:after {
+	width: $size;
+	height: $size;
+	border-top-right-radius: $rounded;
+}
+
+.triangleTree {
+	transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+.triangleTree:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+}
+.triangleTree:after {
+	transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
+
+.triangleTree.tri-ground {
+	opacity: $opacityStart;
+	bottom: calc($size * -2);
+	transition-duration: 0.25s;
+	transition-delay: 0s;
+	// background-color: red;
+}
+
+.triangleTree.tri-2,
+.triangleTree.tri-2:before,
+.triangleTree.tri-2:after {
+	width: calc($size * 3.6);
+	height: calc($size * 3.6);
+	border-top-right-radius: $rounded;
+}
+.triangleTree.tri-2 {
+	opacity: $opacityStart;
+	bottom: calc($size * -6);
+	transition-duration: 0.3s;
+	transition-delay: 0.1s;
+	// background-color: gold;
+}
+
+.triangleTree.tri-3,
+.triangleTree.tri-3:before,
+.triangleTree.tri-3:after {
+	width: calc($size * 3.2);
+	height: calc($size * 3.2);
+	border-top-right-radius: $rounded;
+}
+.triangleTree.tri-3 {
+	opacity: $opacityStart;
+	bottom: calc($size * -6);
+	transition-duration: 0.3s;
+	transition-delay: 0.15s;
+	// background-color: lime;
+}
+
+.triangleTree.tri-4,
+.triangleTree.tri-4:before,
+.triangleTree.tri-4:after {
+	width: calc($size * 2.8);
+	height: calc($size * 2.8);
+	border-top-right-radius: $rounded;
+}
+.triangleTree.tri-4 {
+	opacity: $opacityStart;
+	bottom: calc($size * -5);
+	transition-duration: 0.3s;
+	transition-delay: 0.15s;
+	// background-color: lightblue;
+}
+
+@keyframes shaky-1 {
+	0% {
+		transform: rotate(0);
+	}
+	35% {
+		transform: rotate(-13deg);
+	}
+	60% {
+		transform: rotate(6deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}
+
+@keyframes shaky-2 {
+	0% {
+		transform: rotate(0);
+	}
+	35% {
+		transform: rotate(-6deg);
+	}
+	60% {
+		transform: rotate(20deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}

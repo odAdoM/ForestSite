@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use '../abstracts/colors' as c;
+@use '../abstracts/breakpoints' as b;
+@use '../abstracts/vars' as v;
+@use '../base/typography' as f;
+
+.wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	max-width: v.$wrapper_width;
+}
+
+.section-heading {
+	position: relative;
+	margin-bottom: 1.2em;
+	font-size: 4.4rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1.2px;
+	color: c.$pure-black;
+}
+
+.section-padding {
+	padding: 8em 5em;
+}
+
+// icons
+
+.i_pos {
+	color: c.$contrast_color;
+}
+.i_neg {
+	color: c.$light-gray-2;
+}
+
+// buttons
+
+@mixin baseBtn() {
+	padding: 0.5em 1em;
+	border-radius: 8px;
+	background: none;
+	border: none;
+	background-color: c.$pure-white;
+	font-family: f.$font_main;
+	font-size: 2rem;
+	font-weight: 400;
+	letter-spacing: 1.1px;
+	box-shadow: 0 2px 6px rgba($color: #000000, $alpha: 0.3);
+	cursor: pointer;
+}
+
+.std-choice-btn {
+	@include baseBtn();
+	width: 90%;
+	margin: 1em 0;
+	transition: background-color 0.3s ease-out, box-shadow 0.4s;
+
+	&:hover {
+		background-color: c.$contrast_color;
+		box-shadow: 0 2px 5px rgba($color: c.$contrast_color, $alpha: 0.8);
+	}
+}
+
+.big-choice-btn {
+	@include baseBtn();
+	padding: 0.8em 2em;
+	font-size: 2.4rem;
+	color: c.$pure-white;
+	box-shadow: none;
+	background-color: c.$contrast_second;
+	transition: background-color 0.3s ease-out, color 0.4s;
+
+	&:hover {
+		background-color: c.$contrast_color;
+		color: c.$pure-black;
+	}
+}
+
+// -----------------------< MEDIA QUERIES >--------------------------
+
+@media (min-width: map.get(b.$breakpoints, 'm')) {
+	// .section-heading {
+	// 	font-size: 3.6rem;
+	// }
+	// .section-padding {
+	// 	padding: 8em 2em;
+	// }
+}
+
+@media (min-width: map.get(b.$breakpoints, 'l')) {
+}

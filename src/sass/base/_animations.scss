@@ -1,0 +1,23 @@
+@keyframes pulse {
+	from {
+		transform: scale(1, 1);
+		opacity: 0.6;
+	}
+	to {
+		transform: scale(1.2, 1.5);
+		opacity: 0;
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: right 100%;
+	}
+	100% {
+		background-position: left 100%;
+	}
+}
+
+.gradient-animation {
+	animation: gradient 3.3s ease /* infinite  both*/;
+}

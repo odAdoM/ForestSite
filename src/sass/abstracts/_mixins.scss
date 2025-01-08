@@ -1,0 +1,35 @@
+@mixin heroImages($bgImg) {
+	background-image: url($bgImg);
+	background-size: cover;
+	background-position: center;
+}
+
+@mixin heroImagesWithGradient($bgImg, $grad) {
+	background-image: $grad, url($bgImg);
+	background-size: cover;
+	background-position: center;
+	// background-attachment: fixed;
+}
+
+// triangle "made out of border"
+@mixin equilateral-triangle($direction, $size, $color) {
+	width: 0;
+	height: 0;
+	@if $direction == 'up' {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+	} @else if $direction == 'down' {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-top: $size solid $color;
+	} @else if $direction == 'right' {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+	} @else if $direction == 'left' {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+	}
+}
