@@ -1,26 +1,81 @@
-<!-- <section id="home" class="hash-section">
-    <header class="header hash-section">
-        <div class="header__over-bg"></div>
-        <div class="header__text">
-            <div class="header__text-margin"></div>
-            <div class="header__text-inside">
-                <p>Forest Group</p>
-                <h1>Najpiękniejszy park w Twojej okolicy!</h1>
+<header class="header">
+
+    <div class="wrapper">
+
+        <div class="navi-container">
+
+            <div class="logo-box">
+                <a href="#home" class="logo">
+                    <img src="./img/logo/tree_vector.svg"
+                        onerror="this.onerror=null; this.src='./img/logo/tree_bitmap.png'">
+                    <p>Forest</p>
+                </a>
             </div>
+
+
+            <button class="nav-toggle">
+                <div class="burger-btn__box">
+                    <div class="burger-btn__bars"></div>
+                </div>
+            </button>
+
+
+            <nav class="nav">
+
+                <div class="nav-menu--desktop">
+                    <div class="nav-menu__item" id="homeLink"><a class="nav-menu__link" href="#home">Home</a></div>
+                    <div class="nav-menu__item"><a class="nav-menu__link" href="#aboutus">O nas</a></div>
+                    <div class="nav-menu__item"><a class="nav-menu__link" href="#offer">Oferta</a></div>
+                    <div class="nav-menu__item"><a class="nav-menu__link" href="contact.html">Kontakt</a></div>
+                </div>
+
+                <div class="nav-menu--mobile">
+                    <div class="nav-menu__item" id="homeLink"><a href="#home">Home</a></div>
+                    <div class="nav-menu__item"><a href="#aboutus">O nas</a></div>
+                    <div class="nav-menu__item"><a href="#offer">Oferta</a></div>
+                    <div class="nav-menu__item"><a href="contact.html">Kontakt</a></div>
+                </div>
+
+            </nav>
+
         </div>
-    </header>
-</section> -->
+    </div>
 
-<section id="home" class="hash-section">
 
-    <header class="header">
+</header>
 
-        <div class="wrapper">
-            <div class="header__text">
-                <p>Forest Group</p>
-                <h1>Najpiękniejszy park w Twojej okolicy!</h1>
-            </div>
-        </div>
+<template id="template-contact-trees">
+    <div class="trees">
+        <span class="tree one">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree nine">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree ten">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+            <span class="triangleTree tri-4"></span>
+        </span>
+    </div>
+</template>
 
-    </header>
-</section>
+<template id="template-aboutus-trees">
+    <div class="trees">
+        <span class="tree two">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree three">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+    </div>
+</template>
