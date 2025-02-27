@@ -3,6 +3,11 @@
 @use 'components' as c;
 @use 'pages' as p;
 
+/* for tests only! */
+/* * {
+	outline: 1px solid limegreen;
+}
+ */
 html {
 	font-size: 62.5%;
 	scroll-behavior: smooth;
@@ -11,17 +16,24 @@ html {
 
 body {
 	width: 100%;
+	min-height: 100vh;
+	// min-width: 320px;
 	background-color: abs.$pure-white;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
 .hero {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	position: relative;
-	top: 0; // abs.$menu_height--desktop; // -> set if nav is "fixed", now is sticky
+	top: 0; // abs.$menu_height; // -> set if nav is "fixed", now is sticky
 	height: 470px;
-	@include abs.heroImages('../img/bg/jungle-1807476_1920.jpg');
+	@include abs.heroImages('../img/bg/jungle-1807476_640.jpg');
 	background-position: 50% 70%;
 	z-index: -1;
 
@@ -32,7 +44,7 @@ body {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.65);
 		z-index: -2;
 	}
 
@@ -42,12 +54,13 @@ body {
 		color: abs.$pure-white;
 
 		p {
-			font-size: clamp(2rem, 2.5vw + 0.3rem, 3rem); //2.8rem;
+			font-size: clamp(2rem, 0.6vw + 1.8rem, 2.8rem); //2.8rem;
 			font-weight: 300;
+			margin-bottom: 0.2em;
 		}
 
 		h1 {
-			font-size: clamp(3rem, 3.5vw + 0.4rem, 4.5rem); //4.4rem;
+			font-size: clamp(2.8rem, 1.25vw + 2.4rem, 4.4rem); //4.4rem;
 			font-weight: 700;
 			letter-spacing: 1.2px;
 			line-height: 1.3;
@@ -55,75 +68,49 @@ body {
 	}
 }
 
-.aboutus {
-	&__box {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-
-		&-img {
-			width: 40%;
-		}
-
-		&-text {
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			width: 50%;
-			margin-top: 1em;
-		}
-	}
-
-	&__title {
-		font-size: 3.2rem;
-		margin-bottom: 0.8em;
-	}
-
-	&__text {
-		font-size: 2rem;
-		line-height: 1.8;
-		margin-bottom: 0.6em;
-	}
-
-	&__img {
-		margin-bottom: 0;
-		max-height: 400px;
-	}
-}
-
-.adventure {
+.aside-adventure {
+	--scaleX: 1.2;
+	--scaleY: 1.9;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: relative;
-	height: 400px;
+	height: clamp(250px, 30vw, 400px);
 	background-color: rgb(29, 34, 31);
 	overflow: hidden;
 
+	&:active &__text::before,
 	&:hover &__text::before {
 		animation: pulse 0.5s ease-out;
 	}
-	&:hover &__img {
+	&:hover &__img,
+	&:active &__img {
 		transform: scale(1.05);
 	}
 
 	&__img {
+		position: absolute;
+		width: 100%;
 		height: 100%;
-		@include abs.heroImagesWithGradient('../img/bg/girl-5785590_1280.jpg', abs.$dark-gradient);
+		top: 0;
+		left: 0;
+		@include abs.heroImagesWithGradient('../img/bg/girl-5785590_640.jpg', abs.$dark-gradient);
 		transition: transform 0.3s ease-out;
 	}
 
 	&__text {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+		max-width: 75%;
 		text-align: center;
-		font-size: 4.8rem;
+		font-size: clamp(2.6rem, 1.8vw + 2rem, 4.8rem); //4.8rem;
 		font-weight: 600;
 		letter-spacing: 1.2px;
 		color: abs.$pure-white;
-		outline: 1px solid abs.$pure-white;
-		outline-offset: 1em;
-		padding: 0 3.2em;
+		border: 1px solid abs.$pure-white;
+		// background-color: rgba(5, 70, 5, 0.1);
+		// mix-blend-mode: screen;
+		padding: 0.8em;
 
 		&::before {
 			content: '';
@@ -133,101 +120,44 @@ body {
 			width: 100%;
 			height: 100%;
 			transform-origin: center;
-			outline: 2px solid abs.$pure-white;
-			outline-offset: 1em;
-			padding: 0 3.2em;
+			border: 2px solid abs.$pure-white;
 			opacity: 0;
 		}
 	}
 }
 
-.offer {
-	background-color: abs.$pure-white;
-
-	h3 {
-		text-align: center;
-		font-size: 2.2rem;
-		font-weight: 400;
-		margin-bottom: 50px;
+@media (min-width: 660px) {
+	.hero {
+		@include abs.heroImages('../img/bg/jungle-1807476_1280.jpg');
 	}
 
-	.find-others-header {
-		margin-bottom: 35px;
-		margin-top: 90px;
-		font-size: 2.4rem;
+	.aside-adventure {
+		&__img {
+			@include abs.heroImagesWithGradient('../img/bg/girl-5785590_1280.jpg', abs.$dark-gradient);
+		}
+		&__text {
+			max-width: 85%;
+			padding: 0.8em 1.4em;
+		}
 	}
-
-	.offer-boxes {
-		display: flex;
-		justify-content: center;
-
-		&__box {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin: 0 2em;
-			width: 20%;
-			padding: 4em;
-			border-radius: 10px;
-			box-shadow: 0 0 8px rgba($color: #000000, $alpha: 0.3);
-			background-color: abs.$pure-white;
-			transition: transform 0.3s;
-			background: linear-gradient(
-				120deg,
-				rgba(255, 255, 255, 0) 25%,
-				rgba(#5dbd81, 0.8) 35%,
-				rgba(#c4961a, 0.6) 55%,
-				rgba(255, 255, 255, 0) 65%
-			);
-			background-size: 1200% 100%;
-			background-position: right 100%;
-			// animation: gradient 3.3s ease infinite both;
-
-			/* &:nth-child(2) {
-				z-index: 1;
-			} */
-
-			&:hover {
-				transform: scale(1.05);
-			}
-
-			ul {
-				list-style: none;
-				margin: 10px auto;
-
-				li {
-					padding: 0.3em 0;
-					font-size: 2rem;
-
-					i {
-						font-size: 1.6rem;
-						padding-right: 10px;
-					}
-				}
-			}
-			h4 {
-				font-size: 3rem;
-				font-weight: 400;
-				margin-bottom: 0.3em;
-			}
-
-			.price {
-				margin: 0.3em 0;
-				font-size: 5rem;
-				font-weight: 700;
-			}
-
+}
+@media (min-width: 960px) {
+	.hero {
+		&__text {
 			p {
-				font-size: 2rem;
-				font-weight: 400;
+				margin-bottom: 0;
 			}
 		}
 	}
+	.aside-adventure {
+		&__text {
+			padding: 0.8em 3.6em;
+		}
+	}
+}
 
-	.find-others {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+@media (min-width: 1200px) {
+	.hero {
+		@include abs.heroImages('../img/bg/jungle-1807476_1920.jpg');
 	}
 }

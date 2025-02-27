@@ -7,14 +7,15 @@
     <title>Forest Park</title>
     <meta name="description"
         content="Najpiękniejszy park w okolicy! Tu znajdziesz niezapomniane przygody dla siebie i całej rodziny." />
+
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+
     <!-- @include _links.kit -->
 
 </head>
 
 <body>
-
-    <!-- nice working return to the top (#) if needed-->
-    <!-- <span id="home" class="hash-section"></span> -->
 
     <!-- @include _header.kit -->
 
@@ -30,6 +31,7 @@
     </section>
 
     <main class="main">
+
 
         <section class="aboutus section-padding hash-section" id="aboutus">
 
@@ -96,8 +98,14 @@
 
                 <div class="aboutus__box">
                     <div class="aboutus__box-img">
-                        <img src="./img/waters-3095682_640.jpg" alt="samotne drzewko na skale na tle wody"
-                            class="aboutus__img">
+                        <!-- <img src="./img/waters-3095682_640.jpg"
+                            alt="samotne drzewko na skale na tle wody" class="aboutus__img" draggable="false"> -->
+
+                        <picture>
+                            <source srcset="./img/waters-3095682_640.jpg" media="(min-width: 960px)">
+                            <img src="./img/waters-3095682_1280.jpg" alt="samotne drzewko na skale na tle wody"
+                                class="aboutus__img" draggable="false">
+                        </picture>
                     </div>
                     <div class="aboutus__box-text">
                         <h3 class="aboutus__title">Niezapomniane przygody</h3>
@@ -114,97 +122,99 @@
         </section>
 
 
-        <section class="adventure" onclick="void(0)">
-            <div class="adventure__img">
+        <section class="aside-adventure">
+            <div class="aside-adventure__img">
             </div>
-            <p class="adventure__text">Przygoda dla całej rodziny</p>
+            <p class="aside-adventure__text">Przygoda dla całej rodziny</p>
         </section>
 
 
         <section class="offer section-padding hash-section" id="offer">
+            <div class="wrapper">
 
-            <h2 class="section-heading">oferta</h2>
+                <h2 class="section-heading">oferta</h2>
 
-            <h3>Wybierz jedną z naszych wspaniałych ofert!</h3>
+                <h3>Wybierz jedną z naszych wspaniałych ofert!</h3>
 
-            <div class="offer-boxes">
+                <div class="offer-boxes">
 
-                <div class="offer-boxes__box">
-                    <h4>Demo</h4>
-                    <p class="price">0 zł</p>
-                    <ul>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_neg"></span>opcja poza pakietem</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_neg"></span>opcja poza pakietem</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_neg"></span>opcja poza pakietem </p>
-                        </li>
-                    </ul>
-                    <button class="std-choice-btn">Wybierz</button>
+                    <div class="offer-boxes__box">
+                        <h4>Demo</h4>
+                        <p class="price">0 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem </p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
+                    <div class="offer-boxes__box">
+                        <h4>Standard</h4>
+                        <p class="price">99 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem </p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
+                    <div class="offer-boxes__box">
+                        <h4>Premium</h4>
+                        <p class="price">499 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
                 </div>
 
-                <div class="offer-boxes__box">
-                    <h4>Standard</h4>
-                    <p class="price">99 zł</p>
-                    <ul>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_neg"></span>opcja poza pakietem</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_neg"></span>opcja poza pakietem </p>
-                        </li>
-                    </ul>
-                    <button class="std-choice-btn">Wybierz</button>
-                </div>
-
-                <div class="offer-boxes__box">
-                    <h4>Premium</h4>
-                    <p class="price">499 zł</p>
-                    <ul>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                        <li class="offer-item">
-                            <p><span class="i_pos"></span>opcja w pakiecie</p>
-                        </li>
-                    </ul>
-                    <button class="std-choice-btn">Wybierz</button>
+                <div class="find-others">
+                    <h3 class="find-others-header">Znajdź inną idealnie dopasowaną do Twoich potrzeb ofertę:</h3>
+                    <button class="big-choice-btn">Wszystkie oferty</button>
                 </div>
 
             </div>
-
-            <div class="find-others">
-                <h3 class="find-others-header">Znajdź inną idealnie dopasowaną do Twoich potrzeb ofertę:</h3>
-                <button class="big-choice-btn">Wszystkie oferty</button>
-            </div>
-
 
         </section>
 
@@ -212,13 +222,13 @@
 
     <!-- @include _footer.kit -->
 
+    <script type="module" src="./js/console-colors.min.js"></script>
+    <script type="module" src="./js/helper.min.js"></script>
+    <script type="module" src="./js/aside.min.js"></script>
+    <script type="module" src="./js/offer.min.js"></script>
+    <script type="module" src="./js/navi.min.js"></script>
+    <script type="module" src="./js/main.min.js"></script>
 
-
-    <script src="./js/console-colors.min.js"></script>
-    <script src="./js/helper.min.js"></script>
-    <script src="./js/offer.min.js"></script>
-    <script src="./js/navi.min.js"></script>
-    <script src="./js/main.min.js"></script>
 </body>
 
 

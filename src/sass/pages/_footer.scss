@@ -1,5 +1,76 @@
 @use 'abstracts' as abs;
+@use 'base' as b;
 
 .footer {
 	background-color: abs.$light-gray;
+
+	.footer__boxes {
+		position: relative;
+		width: 80%;
+		margin: 0 auto;
+		padding: 7em 0;
+
+		display: flex;
+		justify-content: flex-end;
+
+		.footer__box--links {
+			.footer__box-title {
+				font-size: 2.7rem;
+				font-weight: 700;
+				margin-bottom: 0.7em;
+			}
+
+			.footer__box-list {
+				list-style: none;
+
+				li > a {
+					text-decoration: none;
+					font-size: 1.6rem;
+				}
+				li + li {
+					margin-top: 2em;
+				}
+			}
+		}
+		.footer__box--links + .footer__box--links {
+			margin-left: 8em;
+		}
+
+		.footer__box {
+			&--logo {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 70px;
+				left: 0;
+				display: flex;
+				align-items: baseline;
+
+				img {
+					width: 50px;
+				}
+
+				h3 {
+					display: inline-block;
+					// font-family: b.$font_logo;
+					font-family: b.$font_main;
+					font-weight: 400;
+					color: abs.$logo-gray;
+					font-size: 5.8rem;
+					margin-left: 0.2em;
+				}
+			}
+		}
+	}
+
+	.footer-rights {
+		width: 100%;
+		border-top: 1px solid #707070;
+
+		p.footer__bottom-text {
+			text-align: center;
+			font-size: 1.6rem;
+			padding: 2em 0;
+		}
+	}
 }

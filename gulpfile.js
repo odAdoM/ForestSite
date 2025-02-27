@@ -2,19 +2,39 @@
 // ACCESS URLs:
 // run with "dist" at the end of local path: http://localhost:3000/dist
 
-const { src, dest, series, parallel, watch } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const autoprefixer = require('gulp-autoprefixer');
-const cssnano = require('gulp-cssnano');
-const rename = require('gulp-rename');
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const imagemin = require('gulp-imagemin');
-const sourcemaps = require('gulp-sourcemaps');
-const clean = require('gulp-clean');
-const kit = require('gulp-kit');
-const browserSync = require('browser-sync').create();
+// const { src, dest, series, parallel, watch } = require('gulp');
+// const sass = require('gulp-sass')(require('sass'));
+// const autoprefixer = require('gulp-autoprefixer');
+// const cssnano = require('gulp-cssnano');
+// const rename = require('gulp-rename');
+// const babel = require('gulp-babel');
+// const uglify = require('gulp-uglify');
+// const imagemin = require('gulp-imagemin');
+// const sourcemaps = require('gulp-sourcemaps');
+// const clean = require('gulp-clean');
+// const kit = require('gulp-kit');
+// const browserSync = require('browser-sync').create();
+// const reload = browserSync.reload;
+
+import pkg from 'gulp';
+const { src, dest, series, parallel, watch } = pkg;
+import autoprefixer from 'gulp-autoprefixer';
+import cssnano from 'gulp-cssnano';
+import rename from 'gulp-rename';
+import babel from 'gulp-babel';
+import uglify from 'gulp-uglify';
+import imagemin from 'gulp-imagemin';
+import sourcemaps from 'gulp-sourcemaps';
+import clean from 'gulp-clean';
+import kit from 'gulp-kit';
+import browserSyncPkg from 'browser-sync';
+
+const browserSync = browserSyncPkg.create();
 const reload = browserSync.reload;
+
+import gulpSass from 'gulp-sass';
+import * as sass from 'sass';
+const sassProcessor = gulpSass(sass);
 
 const paths = {
 	html: './src/html/**/*.kit',
@@ -34,7 +54,7 @@ const paths = {
 function sassCompiler(done) {
 	src(paths.sass)
 		.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
+		.pipe(sassProcessor().on('error', sassProcessor.logError))
 		.pipe(autoprefixer())
 		.pipe(cssnano())
 		.pipe(rename({ suffix: '.min' }))
@@ -46,7 +66,9 @@ function sassCompiler(done) {
 function javaScript(done) {
 	src(paths.js)
 		.pipe(sourcemaps.init())
-		.pipe(babel({ presets: ['@babel/env'] }))
+		//.pipe(babel({ presets: ['@babel/env'] }))
+		// .pipe(babel({ presets: ['@babel/preset-env'] }))
+		.pipe(babel({ presets: [['@babel/preset-env', { modules: false }]] }))
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(sourcemaps.write())
@@ -96,5 +118,7 @@ function watchForChanges(done) {
 }
 
 const mainFunctions = parallel(handleKits, sassCompiler, javaScript, convertImages, copyFonts);
-exports.clearStuff = clearStuff;
-exports.default = series(mainFunctions, startBrowserSync, watchForChanges);
+//exports.clearStuff = clearStuff;
+//exports.default = series(mainFunctions, startBrowserSync, watchForChanges);
+export { clearStuff };
+export default series(mainFunctions, startBrowserSync, watchForChanges);

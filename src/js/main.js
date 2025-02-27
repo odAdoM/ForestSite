@@ -1,17 +1,20 @@
 'use strict';
+import * as cc from './console-colors.min.js';
+import * as navi from './navi.min.js';
 
 //=================================================< MENU&NAV >====================================================================
 // ---
 // MENU - listeners, active state
 // ---
 const MENU_HEIGHT = 105;
+const MENU_HEIGHT_MOBILE = 85;
 const MENU_HEIGHT_MINI = 65;
-const root = document.querySelector(':root');
+const ROOT = document.querySelector(':root');
 let actualMenuHeight = MENU_HEIGHT;
-root.style.setProperty('--menu-height--desktop', `${actualMenuHeight}px`);
-// let actualMenuHeight = getComputedStyle(document.documentElement).getPropertyValue('--menu-height--desktop').slice(0, -2);
+ROOT.style.setProperty('--menu-height--desktop', `${actualMenuHeight}px`);
 
 const HOME_HASH = '#home';
+const HOME = 'home';
 const SCROLLING_BLOCKAGE_TIME = 1500;
 
 const allHashSections = document.querySelectorAll('.hash-section');
@@ -28,6 +31,8 @@ let fromTop = 0;
 let actualScrollY = 0;
 let hrefLink = '';
 
+//============================================================================================================================================================
+
 //TODO: tmp
 const addToMenuItemsHoverTrees = () => {
 	let template = document.querySelector('#template-contact-trees');
@@ -38,61 +43,47 @@ const addToMenuItemsHoverTrees = () => {
 	newItem = template.content.cloneNode(true);
 	navMenuItems[2].appendChild(newItem);
 };
-
 // ***
-
-/* const scrollHandler = () => {
-	//TODO: dodać warunek klasy main w index.hmtl
-	currentSection = window.scrollY;
-
-	console.log('currentHash', currentHash, 'blockage', blockage);
-	if (!blockage) {
-		currentHash = currentSelectedNavMenuItem.getAttribute('href');
-		if (currentHash.startsWith('#')) currentHash = currentHash.slice(1);
-		allHashSections.forEach((section) => {
-			if (
-				currentSection > section.offsetTop - actualMenuHeight &&
-				currentSection < section.offsetTop + section.offsetHeight - actualMenuHeight
-			) {
-				//console.log(section.className, 'start: ', (section.offsetTop - actualMenuHeight),' end: ',(section.offsetTop + section.offsetHeight - actualMenuHeight));
-				//console.log('currentSection', currentSection, ' current selected: ', currentHash, '???', section.id);
-				if (currentHash !== section.id) {
-					console.log('%c>>>>> do select', bgc.red, section.id, actualMenuHeight);
-					selectThisLinkByHref(section.id);
-					return;
-				}
-			}
-		});
-	}
-	//==
-	setMenuHeight();
-};
-*/
 
 function updateActiveMenu() {
 	actualScrollY = window.scrollY;
 	setMenuHeight();
 	if (isScrolling) return;
 
-	fromTop = actualScrollY + actualMenuHeight;
-	activeSection = null;
-	currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
+	if (!navi.isMobileMenuOn());
+	{
+		fromTop = actualScrollY + actualMenuHeight;
+		activeSection = null;
+		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
 
-	allHashSections.forEach((section) => {
-		if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-			activeSection = section.id;
+		allHashSections.forEach((section) => {
+			if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+				activeSection = section.id;
+			}
+		});
+
+		if (activeSection !== currentHash) {
+			//console.log('%c >> ', bgc.green, activeSection);
+			selectThisLinkByHref(activeSection);
 		}
-	});
+	}
+}
 
-	if (activeSection !== currentHash) {
-		//console.log('%c >> ', bgc.green, activeSection);
-		selectThisLinkByHref(activeSection);
-	} //else console.log('%c ten sam hash!', bgc.red, currentHash);
+function setMenuHeight(isHomeFORCE = false) {
+	let isHome = isHomeFORCE ? true : currentHash === HOME ? true : false;
+	// console.log(`%cisHome? ${isHome}`, cc.bgc.red);
 
-	//tu usunie z wszystkich niekatywnych wiec sekcja z reklama bedzie zerowac zaznaczenie w menu
-	/* navMenuItems.forEach((link) => {
-		link.classList.toggle('active', link.getAttribute('href').substring(1) === activeSection);
-	}); */
+	if (!navi.isMobileMenuOn()) {
+		if (actualScrollY > actualMenuHeight + 800 && !isHome) {
+			actualMenuHeight = MENU_HEIGHT_MINI;
+		} else {
+			//console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
+
+			actualMenuHeight = navi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
+		}
+		//console.log('%c nav.offsetHeight', bgc.orange, nav.offsetHeight);
+		ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
+	}
 }
 
 const selectThisLinkByHref = (hrefName) => {
@@ -123,6 +114,7 @@ const selectThisLinkByItem = (link) => {
 };
 
 const navLinkHandler = (e) => {
+	// console.log('%cdesktop navi cliked', colors.orange);
 	clearTimeout(scrollingTO);
 	isScrolling = true;
 
@@ -145,7 +137,7 @@ const addListenersToNavMenuLinks = () => {
 };
 
 const logoClickHandler = (e) => {
-	console.log('logo clicked.');
+	//console.log('logo clicked.');
 	clearTimeout(scrollingTO);
 	isScrolling = true;
 
@@ -159,16 +151,6 @@ const logoClickHandler = (e) => {
 	}, SCROLLING_BLOCKAGE_TIME);
 };
 
-const setMenuHeight = (isHome = false) => {
-	if (actualScrollY > actualMenuHeight + 800 /* nav.offsetHeight + 800 */ && !isHome) {
-		actualMenuHeight = MENU_HEIGHT_MINI;
-	} else {
-		actualMenuHeight = MENU_HEIGHT;
-	}
-	//console.log('%c nav.offsetHeight', bgc.orange, nav.offsetHeight);
-	root.style.setProperty('--menu-height--desktop', `${actualMenuHeight}px`);
-};
-
 //TODO: on dom loaded -> run!
 //==> go!
 // addToMenuItemsHoverTrees();
@@ -178,3 +160,17 @@ logoHomeBtn.addEventListener('click', logoClickHandler);
 addListenersToNavMenuLinks();
 updateActiveMenu();
 window.addEventListener('scroll', updateActiveMenu);
+
+//TODO: !!!
+function mobileViewChangeHandler(e) {
+	/* if (e.matches) {
+	} else {
+	} */
+	setMenuHeight();
+}
+
+//TODO: breakpoints from breakpoints.scss in the end!
+const mediaQuery = window.matchMedia('(min-width: 960px)');
+mediaQuery.addEventListener('change', mobileViewChangeHandler);
+
+mobileViewChangeHandler(mediaQuery);

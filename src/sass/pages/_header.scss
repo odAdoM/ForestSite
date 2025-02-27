@@ -4,18 +4,24 @@
 $time_anim: 0.25s ease-in-out;
 
 section {
-	scroll-margin-top: abs.$menu_height--desktop;
+	scroll-margin-top: abs.$menu_height;
 }
 
 .header {
 	position: sticky;
 	top: 0;
 	width: 100%;
-	height: 100%;
-	height: abs.$menu_height--desktop; //TODO: 1. jakie wielkości menu w mobile - osobne? 2. zrobić drop filter w mobile? 3. naprawić układ i uciekanie w gore w waskim widoku
-	background-color: rgba(245, 245, 245, 0.479); //abs.$pure-white;
+	height: abs.$menu_height;
+	background-color: abs.$pure-white;
 	z-index: 10;
 	transition: height $time_anim;
+
+	--blur: 7px;
+	@supports (backdrop-filter: blur(var(--blur))) or (-webkit-backdrop-filter: blur(var(--blur))) {
+		background-color: rgba(255, 252, 252, 0.7);
+		-webkit-backdrop-filter: blur(var(--blur));
+		backdrop-filter: blur(var(--blur));
+	}
 
 	&::before {
 		content: '';
@@ -25,11 +31,16 @@ section {
 		width: 100%;
 		height: 100%;
 		background-color: transparent;
-		box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+	}
+
+	.wrapper {
+		height: 100%;
 	}
 
 	.navi-container {
 		position: relative;
+		height: 100%;
 
 		// --
 		// LOGO
@@ -38,27 +49,28 @@ section {
 		.logo-box {
 			display: inline-block;
 			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
 
 			.logo {
 				display: flex;
 				align-items: baseline;
-				// padding: 1.2em 0; //TODO: czy da się pominąć zmienną wysokości? czy działa dociąganie
-				// margin: 1em 0;
 				text-decoration: none;
 
 				p {
 					display: inline-block;
-					font-family: b.$font_logo;
+					// font-family: b.$font_logo;
+					font-family: b.$font_main;
 					color: abs.$logo-gray;
-					font-size: calc(abs.$menu_height--desktop * 0.45); //4.4rem;;
+					font-size: calc(abs.$menu_height * 0.4); //4.4rem;;
 					margin-left: 0.1em;
 					pointer-events: none;
 					transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 				}
 				img {
 					aspect-ratio: 1;
-					margin-left: 1em;
-					height: calc(abs.$menu_height--desktop * 0.4);
+					margin-left: -5px;
+					height: calc(abs.$menu_height * 0.36);
 					pointer-events: none;
 					transition: height 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 				}
@@ -75,15 +87,49 @@ section {
 		}
 
 		.nav-toggle {
+			display: block;
 			position: absolute;
 			right: 0;
 			top: 50%;
-			z-index: 100;
+			transform: translateY(-50%);
+			height: 70%;
+			aspect-ratio: 1;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			z-index: 1;
 
-			.burger-btn__box {
-				width: 20px;
-				height: 20px;
-				background-color: red;
+			.hamburger {
+				position: relative;
+			}
+
+			.hamburger .line {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: 50%;
+				height: 3px;
+				transform-origin: center;
+				transform: translateX(-50%);
+				transition: transform 0.3s 0.1s ease-in-out;
+				background-color: abs.$almost-black;
+			}
+			.hamburger .line:nth-of-type(1) {
+				transform: translate(-50%, -8px);
+			}
+			.hamburger .line:nth-of-type(3) {
+				transform: translate(-50%, 8px);
+			}
+
+			.hamburger.closed .line:nth-of-type(2) {
+				transition: transform 0.25s 0s ease-in;
+				transform: translateX(-50%) scaleX(0);
+			}
+			.hamburger.closed .line:nth-of-type(1) {
+				transform: translate(-50%, 0px) rotate(45deg);
+			}
+			.hamburger.closed .line:nth-of-type(3) {
+				transform: translate(-50%, 0px) rotate(-45deg);
 			}
 		}
 
@@ -96,37 +142,99 @@ section {
 			height: 0;
 			position: absolute;
 
+			opacity: 0;
+			transition: visibility 0.3s linear, opacity 0.3s linear;
+
 			&-menu {
 				&--desktop {
 					display: none;
 				}
 
 				&--mobile {
-					display: block;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+
+					position: fixed;
+					top: abs.$menu_height;
+					left: 0;
+					width: 100%;
+					height: calc(100vh - abs.$menu_height);
+					background-color: abs.$almost-black;
+					z-index: 100;
+					opacity: 0;
+					transition: opacity 0.25s ease-in;
+
+					&--active {
+						opacity: 1;
+					}
+
+					.nav-menu__item {
+						position: relative;
+						margin: 3em 0;
+					}
+					.nav-menu__link--mobile {
+						text-decoration: none;
+						font-size: clamp(2.6rem, 2.1rem + 1.5vw, 3.6rem);
+						text-transform: uppercase;
+						color: abs.$light-gray;
+					}
+
+					.nav-menu-item-animation {
+						animation: navItemsAnimation 0.3s both ease-in-out 0s;
+					}
 				}
 			}
 			&.nav--visible {
 				visibility: visible;
+				opacity: 1;
 				height: auto;
-				position: relative;
+				position: static;
 			}
 		}
 	}
 }
 
+@keyframes navItemsAnimation {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 //=========================================< MEDIA QUERIES />====================================================
 
+@media (min-width: 660px) {
+	.header {
+		.navi-container {
+			text-align: center;
+		}
+	}
+}
 @media (min-width: 960px) {
 	.header {
-		height: abs.$menu_height--desktop;
+		height: abs.$menu_height;
+		background-color: abs.$pure-white;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
 
 		.navi-container {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 
-			.logo {
-				margin-right: 3em;
+			.logo-box {
+				top: 0;
+				transform: translateY(0);
+
+				.logo {
+					margin-right: 3em;
+				}
 			}
 
 			.nav-toggle {
@@ -157,9 +265,9 @@ section {
 							display: flex;
 							justify-content: center;
 							align-items: center;
-							height: abs.$menu_height--desktop;
-							padding: 0 1.7em;
-							font-size: 2rem; //calc(abs.$menu_height--desktop * 0.25);
+							height: abs.$menu_height;
+							padding: 0 2em;
+							font-size: 2rem; //calc(abs.$menu_height * 0.25);
 							color: abs.$pure-black;
 							text-decoration: none;
 							text-align: center;
@@ -175,7 +283,7 @@ section {
 								top: 0;
 								width: 100%;
 								height: 0%;
-								background-color: abs.$pure-black;
+								background-color: abs.$almost-black;
 								transition: height $time_anim, color 1s;
 								z-index: -1;
 							}

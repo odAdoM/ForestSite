@@ -1,9 +1,19 @@
+import * as helper from './helper.min.js';
+import * as cc from './console-colors.min.js';
+
 //=================================================< OFFER >====================================================================
 // OFFER - appropriate icons setting
 // ---
 
-const POSITIVE_ICON = 'fa-solid fa-check';
-const NEGTIVE_ICON = 'fa-solid fa-minus';
+// fontawesome
+// const POSITIVE_ICON = 'fa-solid fa-check';
+// const NEGTIVE_ICON = 'fa-solid fa-minus';
+//tabler
+// const POSITIVE_ICON = 'ti ti-check';
+// const NEGTIVE_ICON = 'ti ti-minus';
+//ionic
+const POSITIVE_ICON = 'checkmark';
+const NEGTIVE_ICON = 'remove';
 
 const setLiIcons = () => {
 	const offerItems = document.querySelectorAll('.offer-boxes__box > ul > li');
@@ -17,9 +27,11 @@ const setRightIcon = (li) => {
 	const ico = li.querySelector('span');
 	if (ico) {
 		if (ico.classList.contains('i_pos')) {
-			ico.innerHTML = `<i class="${POSITIVE_ICON}"></i>`;
+			// ico.innerHTML = `<i class="${POSITIVE_ICON}"></i>`;
+			ico.innerHTML = `<ion-icon name="${POSITIVE_ICON}"></ion-icon>`;
 		} else if (ico.classList.contains('i_neg')) {
-			ico.innerHTML = `<i class="${NEGTIVE_ICON}"></i>`;
+			// ico.innerHTML = `<i class="${NEGTIVE_ICON}"></i>`;
+			ico.innerHTML = `<ion-icon name="${NEGTIVE_ICON}"></ion-icon>`;
 			li.classList.add('i_neg');
 		}
 	}
@@ -67,9 +79,9 @@ const offerRandomAnimation = (delay) => {
 
 		if (offerAmount > 2) {
 			do {
-				next = getRandomInt(offerAmount);
+				next = helper.getRandomInt(offerAmount);
 			} while (next === prev);
-		} else next = getRandomInt(offerAmount);
+		} else next = helper.getRandomInt(offerAmount);
 
 		newDelay = 0;
 		const box = offerBoxes[next];
@@ -77,7 +89,7 @@ const offerRandomAnimation = (delay) => {
 			if (!box.matches(':hover')) box.classList.add('gradient-animation');
 
 			prev = next;
-			newDelay = getRandomInteger(4, 5) * 1000;
+			newDelay = helper.getRandomInteger(4, 5) * 1000;
 		}
 
 		offerRandomAnimation(newDelay);

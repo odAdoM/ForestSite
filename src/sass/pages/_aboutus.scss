@@ -1,0 +1,64 @@
+@use 'abstracts' as abs;
+@use 'base' as b;
+
+.aboutus {
+	&__box {
+		&-img {
+			.aboutus__img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+
+		&-text {
+			.aboutus__title {
+				font-size: clamp(2rem, 1.1vw + 1.6rem, 3.3rem); //3.2rem;
+				margin: 2em 0 0.8em;
+			}
+
+			.aboutus__text {
+				font-size: clamp(1.5rem, 0.6vw + 1.3rem, 2.2rem); //2rem;
+				line-height: 1.4;
+			}
+
+			.aboutus__text + .aboutus__text {
+				margin-top: 1em;
+			}
+		}
+	}
+}
+
+@media (min-width: 960px) {
+	.aboutus {
+		&__box {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+
+			&-img {
+				width: 46%;
+
+				.aboutus__img {
+					max-height: 420px;
+				}
+			}
+
+			&-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				width: 49%;
+
+				.aboutus__title {
+					margin: 0;
+					margin-bottom: 0.8em;
+				}
+
+				.aboutus__text {
+					line-height: 1.8;
+				}
+			}
+		}
+	}
+}

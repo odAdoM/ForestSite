@@ -1,9 +1,9 @@
-$menu_height--desktop: var(--menu-height--desktop);
+$menu_height: var(--menu-height);
 $wrapper_width: 1400px;
 $wrapper_margin: calc((1920px - $wrapper_width) * 0.5);
-$menu_adds_size: calc($menu_height--desktop * 0.17);
+$menu_adds_size: calc($menu_height * 0.17);
 
 // so far only method to change value in JS dynamicaly
 :root {
-	--menu-height--desktop: 105px;
+	--menu-height: 105px;
 }
