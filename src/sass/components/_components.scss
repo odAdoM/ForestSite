@@ -80,6 +80,8 @@
 
 	&:focus {
 		outline: none;
+	}
+	&:focus-visible {
 		outline: 2px solid c.$contrast_color;
 		outline-offset: -0.3em;
 	}
@@ -102,6 +104,9 @@
 
 	&:focus {
 		outline: none;
+	}
+
+	&:focus-visible {
 		outline: 2px solid white;
 		outline-offset: -0.3em;
 	}

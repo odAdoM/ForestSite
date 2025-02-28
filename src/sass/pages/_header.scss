@@ -136,6 +136,8 @@ section {
 
 			&:focus {
 				outline: none;
+			}
+			&:focus-visible {
 				border: 2px solid abs.$almost-black;
 				border-radius: 6px;
 			}
@@ -188,6 +190,8 @@ section {
 
 					.nav-menu__link--mobile:focus {
 						outline: none;
+					}
+					.nav-menu__link--mobile:focus-visible {
 						outline: 2px solid white;
 						outline-offset: 0.7em;
 					}
@@ -292,6 +296,8 @@ section {
 
 							&:focus {
 								outline: none;
+							}
+							&:focus-visible {
 								outline: 3px solid green;
 								outline-offset: -0.5em;
 							}

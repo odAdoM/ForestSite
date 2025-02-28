@@ -5,32 +5,44 @@
         <div class="navi-container">
 
             <div class="logo-box">
-                <a href="#home" class="logo forest">
-                    <!-- <object data="./img/logo/tree_vector.svg" width="40" height="40"> </object> -->
+                <a href="index.html#home" class="logo" style="background-color: pink;">
                     <img src="./img/logo/tree_vector.svg"
                         onerror="this.onerror=null; this.src='./img/logo/tree_bitmap.png'">
                     <p>Forest</p>
                 </a>
             </div>
 
-            <!-- <button class="burger-btn">
-                <div class="burger-btn__box">
-                    <div class="burger-btn__bars"></div>
+
+            <button class="nav-toggle">
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
                 </div>
-            </button> -->
+            </button>
 
 
             <nav class="nav">
 
-                <div class="nav-menu nav-menu--desktop">
+                <div class="nav-menu--desktop">
+                    <div class="nav-menu__item" id="homeLink"><a class="nav-menu__link" href="index.html#home">Home</a>
+                    </div>
+                    <div class="nav-menu__item"><a class="nav-menu__link" href="index.html#aboutus">O nas</a></div>
+                    <div class="nav-menu__item"><a class="nav-menu__link" href="index.html#offer">Oferta</a></div>
+                    <div class="nav-menu__item" id="contactLink"><a class="nav-menu__link" href="#">Kontakt</a></div>
+                </div>
 
-                    <div class="nav-menu__items">
-                        <div class="nav-menu__item"><a href="index.html#home">2Home</a></div>
-                        <div class="nav-menu__item"><a href="index.html#aboutus">2O nas</a></div>
-                        <div class="nav-menu__item"><a href="index.html#offer">2Oferta</a></div>
-                        <div class="nav-menu__item" id="contactLink"><a href="#">2Kontakt</a></div>
+                <div class="nav-menu--mobile">
+                    <div class="nav-menu__item" id="homeLink"><a class="nav-menu__link--mobile"
+                            href="index.html#home">Home</a></div>
+                    <div class="nav-menu__item"><a class="nav-menu__link--mobile" href="index.html#aboutus">O nas</a>
+                    </div>
+                    <div class="nav-menu__item"><a class="nav-menu__link--mobile" href="index.html#offer">Oferta</a>
+                    </div>
+                    <div class="nav-menu__item" id="contactLink"><a class="nav-menu__link--mobile" href="#">Kontakt</a>
                     </div>
                 </div>
+
             </nav>
 
         </div>
@@ -38,39 +50,3 @@
 
 
 </header>
-
-<template id="template-contact-trees">
-    <div class="trees">
-        <span class="tree one">
-            <span class="triangleTree tri-ground"></span>
-            <span class="triangleTree tri-2"></span>
-            <span class="triangleTree tri-3"></span>
-        </span>
-        <span class="tree nine">
-            <span class="triangleTree tri-ground"></span>
-            <span class="triangleTree tri-2"></span>
-            <span class="triangleTree tri-3"></span>
-        </span>
-        <span class="tree ten">
-            <span class="triangleTree tri-ground"></span>
-            <span class="triangleTree tri-2"></span>
-            <span class="triangleTree tri-3"></span>
-            <span class="triangleTree tri-4"></span>
-        </span>
-    </div>
-</template>
-
-<template id="template-aboutus-trees">
-    <div class="trees">
-        <span class="tree two">
-            <span class="triangleTree tri-ground"></span>
-            <span class="triangleTree tri-2"></span>
-            <span class="triangleTree tri-3"></span>
-        </span>
-        <span class="tree three">
-            <span class="triangleTree tri-ground"></span>
-            <span class="triangleTree tri-2"></span>
-            <span class="triangleTree tri-3"></span>
-        </span>
-    </div>
-</template>

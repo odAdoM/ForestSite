@@ -2,7 +2,6 @@ import * as cc from './console-colors.min.js';
 import * as helper from './helper.min.js';
 
 const BODY = document.body;
-const logoBtn = document.querySelector('.logo');
 const toggleBtn = document.querySelector('.nav-toggle');
 const hamburgerBtn = toggleBtn.querySelector('.hamburger');
 const nav = document.querySelector('.nav');
@@ -122,11 +121,3 @@ function closeMenu(backToPreviousScrollPosition = true) {
 }
 
 //================================================================
-
-const logoClickHandler = (e) => {
-	if (isMobileMenuOn()) {
-		// console.log('%cnavi mobile on!', cc.bgc.red);
-		e.preventDefault();
-	}
-};
-logoBtn.addEventListener('click', logoClickHandler);

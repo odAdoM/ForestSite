@@ -10,6 +10,7 @@ const MENU_HEIGHT = 105;
 const MENU_HEIGHT_MOBILE = 85;
 const MENU_HEIGHT_MINI = 65;
 const ROOT = document.querySelector(':root');
+const BODY = document.body;
 let actualMenuHeight = MENU_HEIGHT;
 ROOT.style.setProperty('--menu-height--desktop', `${actualMenuHeight}px`);
 
@@ -45,13 +46,19 @@ const addToMenuItemsHoverTrees = () => {
 };
 // ***
 
+function isIndexPage() {
+	console.log('contains(index-page)?', BODY.classList.contains('index-page'));
+	return BODY.classList.contains('index-page');
+}
+
 function updateActiveMenu() {
 	actualScrollY = window.scrollY;
 	setMenuHeight();
 	if (isScrolling) return;
 
-	if (!navi.isMobileMenuOn());
+	if (!navi.isMobileMenuOn() && isIndexPage());
 	{
+		console.log(navi.isMobileMenuOn(), isIndexPage());
 		fromTop = actualScrollY + actualMenuHeight;
 		activeSection = null;
 		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
@@ -137,29 +144,28 @@ const addListenersToNavMenuLinks = () => {
 };
 
 const logoClickHandler = (e) => {
-	//console.log('logo clicked.');
-	clearTimeout(scrollingTO);
-	isScrolling = true;
+	if (navi.isMobileMenuOn()) {
+		console.log('%cnavi mobile on!', cc.bgc.red);
+		e.preventDefault();
+	} else {
+		//console.log('logo clicked.');
+		clearTimeout(scrollingTO);
+		isScrolling = true;
 
-	//-
-	selectThisLinkByItem(homeNavMenuItem);
-	setMenuHeight(true);
-	//-
+		//-
+		selectThisLinkByItem(homeNavMenuItem);
+		setMenuHeight(true);
+		//-
 
-	scrollingTO = setTimeout(() => {
-		isScrolling = false;
-	}, SCROLLING_BLOCKAGE_TIME);
+		scrollingTO = setTimeout(() => {
+			isScrolling = false;
+		}, SCROLLING_BLOCKAGE_TIME);
+	}
 };
 
 //TODO: on dom loaded -> run!
 //==> go!
 // addToMenuItemsHoverTrees();
-
-selectThisLinkByItem(homeNavMenuItem);
-logoHomeBtn.addEventListener('click', logoClickHandler);
-addListenersToNavMenuLinks();
-updateActiveMenu();
-window.addEventListener('scroll', updateActiveMenu);
 
 //TODO: !!!
 function mobileViewChangeHandler(e) {
@@ -168,9 +174,16 @@ function mobileViewChangeHandler(e) {
 	} */
 	setMenuHeight();
 }
-
 //TODO: breakpoints from breakpoints.scss in the end!
 const mediaQuery = window.matchMedia('(min-width: 960px)');
 mediaQuery.addEventListener('change', mobileViewChangeHandler);
 
+if (isIndexPage()) {
+	console.log('@@@');
+	selectThisLinkByItem(homeNavMenuItem);
+	logoHomeBtn.addEventListener('click', logoClickHandler);
+	addListenersToNavMenuLinks();
+	updateActiveMenu(); //FIXME: to jest potrzebne?
+}
+window.addEventListener('scroll', updateActiveMenu);
 mobileViewChangeHandler(mediaQuery);
