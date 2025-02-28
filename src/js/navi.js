@@ -2,6 +2,7 @@ import * as cc from './console-colors.min.js';
 import * as helper from './helper.min.js';
 
 const BODY = document.body;
+const logoBtn = document.querySelector('.logo');
 const toggleBtn = document.querySelector('.nav-toggle');
 const hamburgerBtn = toggleBtn.querySelector('.hamburger');
 const nav = document.querySelector('.nav');
@@ -17,8 +18,6 @@ export function isMobileMenuOn() {
 export function isMobileOn() {
 	return isMobileViewOn; //window.getComputedStyle(toggleBtn).display !== 'none';
 }
-
-//TODO: klikniecie na logo w trakcie rozwinietego menu
 
 //=====================================================================================================================================
 
@@ -121,3 +120,13 @@ function closeMenu(backToPreviousScrollPosition = true) {
 	BODY.style.top = '0px';
 	if (backToPreviousScrollPosition) window.scrollTo(0, scrollPosition);
 }
+
+//================================================================
+
+const logoClickHandler = (e) => {
+	if (isMobileMenuOn()) {
+		// console.log('%cnavi mobile on!', cc.bgc.red);
+		e.preventDefault();
+	}
+};
+logoBtn.addEventListener('click', logoClickHandler);

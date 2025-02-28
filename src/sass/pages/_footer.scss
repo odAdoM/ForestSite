@@ -8,46 +8,24 @@
 		position: relative;
 		width: 80%;
 		margin: 0 auto;
-		padding: 7em 0;
-
-		display: flex;
-		justify-content: flex-end;
-
-		.footer__box--links {
-			.footer__box-title {
-				font-size: 2.7rem;
-				font-weight: 700;
-				margin-bottom: 0.7em;
-			}
-
-			.footer__box-list {
-				list-style: none;
-
-				li > a {
-					text-decoration: none;
-					font-size: 1.6rem;
-				}
-				li + li {
-					margin-top: 2em;
-				}
-			}
-		}
-		.footer__box--links + .footer__box--links {
-			margin-left: 8em;
-		}
+		padding: 4em 0 5em;
 
 		.footer__box {
+			& + .footer__box {
+				margin-top: 4em;
+			}
+
 			&--logo {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				top: 70px;
-				left: 0;
 				display: flex;
 				align-items: baseline;
+				pointer-events: none;
+				background-color: peru;
+				// width: 50%;
 
 				img {
-					width: 50px;
+					// width: 10%;
+					// height: auto;
+					width: 50px; //TODO: jak zmniejszac proporcjonalnie
 				}
 
 				h3 {
@@ -61,6 +39,39 @@
 				}
 			}
 		}
+
+		.footer__box--links {
+			.footer__box-title {
+				font-size: clamp(2rem, 0.44vw + 1.86rem, 2.7rem); //2.7rem;
+				font-weight: 700;
+				margin-bottom: 0.7em;
+				white-space: nowrap;
+			}
+
+			.footer__box-list {
+				list-style: none;
+
+				li > a {
+					font-size: clamp(1.4rem, 0.12vw + 1.36rem, 1.6rem); //1.6rem;
+					color: abs.$almost-black;
+					cursor: pointer;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration-thickness: 1px;
+						text-decoration-color: abs.$contrast_color;
+						text-decoration-style: double;
+						text-decoration-line: underline;
+						text-decoration-skip-ink: none;
+						text-underline-offset: 0.15em;
+					}
+				}
+
+				li + li {
+					margin-top: 1.5em;
+				}
+			}
+		}
 	}
 
 	.footer-rights {
@@ -70,7 +81,59 @@
 		p.footer__bottom-text {
 			text-align: center;
 			font-size: 1.6rem;
+			letter-spacing: 0.8px;
 			padding: 2em 0;
+		}
+	}
+}
+
+@media (min-width: 800px) {
+	.footer {
+		.footer__boxes {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 7em 0;
+
+			.footer__box {
+				flex-basis: 0%;
+				flex-grow: 1;
+
+				& + .footer__box {
+					margin-top: 0;
+				}
+
+				&--logo {
+					flex-basis: 100%;
+					margin-bottom: 5em;
+				}
+			}
+
+			.footer__box--links {
+				& + .footer__box--links {
+					margin-left: 8em;
+				}
+
+				.footer__box-list {
+					li + li {
+						margin-top: 2.2em;
+					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 1260px) {
+	.footer {
+		.footer__boxes {
+			.footer__box {
+				flex: 1;
+				flex-shrink: 3;
+
+				&--logo {
+					flex-grow: 5;
+					flex-shrink: 1;
+				}
+			}
 		}
 	}
 }
