@@ -167,6 +167,7 @@ section {
 					justify-content: center;
 
 					position: fixed;
+					font-size: clamp(2.6rem, 2.1rem + 1.5vw, 3.6rem);
 					top: abs.$menu_height;
 					left: 0;
 					width: 100%;
@@ -182,12 +183,15 @@ section {
 
 					.nav-menu__item {
 						position: relative;
-						margin: 2.5em 0;
-						padding: 1.5em 2em;
+						margin: 1em 0;
+						padding: 0.5em 0.8em;
 						cursor: pointer;
 						-webkit-tap-highlight-color: transparent;
 					}
 
+					// .nav-menu__link--mobile:active {
+					// 	color: green;
+					// }
 					.nav-menu__link--mobile:focus {
 						outline: none;
 					}
@@ -197,13 +201,24 @@ section {
 					}
 					.nav-menu__link--mobile {
 						text-decoration: none;
-						font-size: clamp(2.6rem, 2.1rem + 1.5vw, 3.6rem);
 						text-transform: uppercase;
+						font-size: inherit;
 						color: abs.$light-gray;
 					}
 
 					.nav-menu-item-animation {
 						animation: navItemsAnimation 0.3s both ease-in-out 0s;
+					}
+
+					.mobile-btn-tree {
+						position: absolute;
+						width: 1.2em;
+						aspect-ratio: 1;
+						left: 0;
+						top: 0;
+					}
+					.mobile-btn-tree--hidden {
+						display: none;
 					}
 				}
 			}

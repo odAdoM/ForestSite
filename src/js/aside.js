@@ -1,7 +1,7 @@
 'use strict';
 
-import * as helper from './helper.min.js';
-import * as cc from './console-colors.min.js';
+import * as helper from './add//helper.min.js';
+import * as cc from './add/console-colors.min.js';
 
 const asideText = document.querySelector('.aside-adventure__text');
 const ASIDE_TEXT = asideText.innerHTML;

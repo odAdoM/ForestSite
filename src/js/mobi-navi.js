@@ -1,7 +1,7 @@
 'use strict';
 
-import * as cc from './console-colors.min.js';
-import * as helper from './helper.min.js';
+import * as cc from './add/console-colors.min.js';
+import * as helper from './add/helper.min.js';
 
 const ROOT = document.querySelector(':root');
 const BODY = document.body;

@@ -1,8 +1,8 @@
 'use strict';
 
-import * as cc from './console-colors.min.js';
+import * as cc from './add/console-colors.min.js';
+import * as helper from './add/helper.min.js';
 import * as mnavi from './mobi-navi.min.js';
-import * as helper from './helper.min.js';
 
 //=================================================< MENU&NAV >====================================================================
 // ---
@@ -56,6 +56,7 @@ export function settingsFromIndex(hashsections) {
 	window.addEventListener('scroll', updateActiveMenu);
 	mediaQuery.addEventListener('change', mobileViewChangeHandler);
 	//updateActiveMenu(); //FIXME: to jest potrzebne?
+	setMenuHeight(); //FIXME: czy da się ustawić na poczatku bez animacji?
 
 	// */
 }
@@ -63,6 +64,7 @@ export function settingsFromContact() {
 	console.log('%c@@@ settingsFromContact', cc.colors.green);
 	selectThisLinkByItem(contactNavMenuItem);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	setMenuHeight();
 	//mediaQuery.addEventListener('change', mobileViewChangeHandler);
 }
 
