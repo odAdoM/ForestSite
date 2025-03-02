@@ -1,123 +1,220 @@
+'use strict';
+
 import * as cc from './console-colors.min.js';
+import * as mnavi from './mobi-navi.min.js';
 import * as helper from './helper.min.js';
 
+//=================================================< MENU&NAV >====================================================================
+// ---
+// MENU - listeners, active state
+// ---
+const ROOT = document.querySelector(':root');
 const BODY = document.body;
-const toggleBtn = document.querySelector('.nav-toggle');
-const hamburgerBtn = toggleBtn.querySelector('.hamburger');
-const nav = document.querySelector('.nav');
-const mobileNav = nav.querySelector('.nav-menu--mobile');
-const mobileNavItems = mobileNav.querySelectorAll('.nav-menu__item');
-let mobileScrollBlockageTO;
-let isMobileViewOn;
 
-export function isMobileMenuOn() {
-	return nav.classList.contains('nav--visible') && mobileNav.classList.contains('nav-menu--mobile--active');
+const MENU_HEIGHT = 105;
+const MENU_HEIGHT_MOBILE = 85;
+const MENU_HEIGHT_MINI = 65;
+let actualMenuHeight = MENU_HEIGHT;
+//ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
+
+const HOME_HASH = '#home';
+const HOME = 'home';
+const SCROLLING_BLOCKAGE_TIME = 1500;
+
+const logoHomeBtn = document.querySelector('.logo');
+const navMenuItems = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
+const homeNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#homeItem .nav-menu__link');
+const contactNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#contactItem .nav-menu__link');
+
+let isScrolling = false;
+let scrollingTO;
+let currentSelectedNavMenuItem;
+let currentHash = '';
+let activeSection = null;
+let fromTop = 0;
+let actualScrollY = 0;
+let hrefLink = '';
+let allHashSections;
+
+const mediaQuery = window.matchMedia('(min-width: 960px)'); //TODO: breakpoints from breakpoints.scss in the end!
+
+//============================================================================================================================================================
+
+export function settingsFromIndex(hashsections) {
+	///*
+	allHashSections = hashsections;
+	let hash = helper.checkActualHashLocation();
+	//console.log('%c@@@ settingsFromIndex', cc.colors.red);
+	console.log('%clocation: ' + window.location.href + ' %c hash: ' + hash, cc.bgc.green, cc.bgc.purple);
+
+	if (hash === null || hash === HOME)
+		selectThisLinkByItem(homeNavMenuItem); //FIXME: wybrany strony lub klikniety z innej
+	else selectThisLinkByHref(hash);
+
+	logoHomeBtn.addEventListener('click', logoClickHandler);
+	addListenersToNavMenuLinks();
+	window.addEventListener('scroll', updateActiveMenu);
+	mediaQuery.addEventListener('change', mobileViewChangeHandler);
+	//updateActiveMenu(); //FIXME: to jest potrzebne?
+
+	// */
+}
+export function settingsFromContact() {
+	console.log('%c@@@ settingsFromContact', cc.colors.green);
+	selectThisLinkByItem(contactNavMenuItem);
+	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	//mediaQuery.addEventListener('change', mobileViewChangeHandler);
 }
 
-export function isMobileOn() {
-	return isMobileViewOn; //window.getComputedStyle(toggleBtn).display !== 'none';
-}
+function updateActiveMenu() {
+	actualScrollY = window.scrollY;
+	setMenuHeight();
+	if (isScrolling) return;
 
-//=====================================================================================================================================
+	if (!mnavi.isMobileMenuOn());
+	{
+		//console.log('%cinside update menu', cc.bgc.blue);
+		fromTop = actualScrollY + actualMenuHeight;
+		activeSection = null;
+		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
+		//console.log('curentHash', currentHash, currentSelectedNavMenuItem);
 
-const toggleClikHandler = (e) => {
-	nav.classList.toggle('nav--visible');
-	mobileNav.classList.toggle('nav-menu--mobile--active');
-
-	// -----   if opened  ------
-	if (nav.classList.contains('nav--visible') && mobileNav.classList.contains('nav-menu--mobile--active')) {
-		//console.log('%c run menu animation', cc.bgc.green);
-		hamburgerBtn.classList.add('closed');
-		runMobileNavAnimation();
-		mobileScrollBlockageTO = setTimeout(openMenu, 300);
-	}
-	// -----   if closed  ------
-	else {
-		//console.log('%c close menu', cc.bgc.red);
-		clearTimeout(mobileScrollBlockageTO);
-		closeMenu(true);
-		hamburgerBtn.classList.remove('closed');
-		resetMobileNavAnimation();
-	}
-};
-
-const delayOffset = 0.1;
-const runMobileNavAnimation = () => {
-	let delayTime = 0.1;
-
-	mobileNavItems.forEach((item) => {
-		delayTime += delayOffset;
-		item.classList.add('nav-menu-item-animation');
-		item.style.animationDelay = delayTime + 's';
-	});
-};
-
-const resetMobileNavAnimation = () => {
-	mobileNavItems.forEach((item) => {
-		item.classList.remove('nav-menu-item-animation');
-		item.style.animationDelay = 0 + 's';
-	});
-};
-
-function mobileNavItemClickHandler() {
-	mobileNavItems.forEach((item) => {
-		item.addEventListener('click', () => {
-			resetMobileMenu();
+		allHashSections.forEach((section) => {
+			if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+				activeSection = section.id;
+				//console.log('%cactive section: ' + activeSection, cc.bgc.yellow);
+			}
 		});
-	});
-}
 
-//==>
-resetMobileNavAnimation();
-mobileNavItemClickHandler();
-toggleBtn.addEventListener('click', toggleClikHandler);
-
-//==
-
-function updateMenuVisibility(e) {
-	if (e.matches) {
-		isMobileViewOn = false;
-		nav.classList.add('nav--visible');
-	} else {
-		isMobileViewOn = true;
-		resetMobileMenu();
+		if (activeSection !== currentHash) {
+			//console.log('%c >> ', cc.bgc.green, activeSection);
+			selectThisLinkByHref(activeSection);
+		}
 	}
 }
 
-function resetMobileMenu() {
-	clearTimeout(mobileScrollBlockageTO);
-	closeMenu(false);
-	nav.classList.remove('nav--visible');
-	mobileNav.classList.remove('nav-menu--mobile--active');
-	hamburgerBtn.classList.remove('closed');
-	resetMobileNavAnimation();
+function setMenuHeight(isHomeFORCE = false) {
+	let isHome = isHomeFORCE ? true : currentHash === HOME ? true : false;
+	//console.log(`%cisHome? ${isHome}`, cc.bgc.red, currentHash);
+
+	if (!mnavi.isMobileMenuOn()) {
+		if (actualScrollY > actualMenuHeight + 800 && !isHome) {
+			actualMenuHeight = MENU_HEIGHT_MINI;
+		} else {
+			//console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
+
+			actualMenuHeight = mnavi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
+		}
+		//console.log('%c actualMenuHeight', cc.bgc.orange, actualMenuHeight);
+		ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
+	}
 }
 
-//TODO: breakpoints from breakpoints.scss in the end!
-const mediaQuery = window.matchMedia('(min-width: 960px)');
-mediaQuery.addEventListener('change', updateMenuVisibility);
+const selectThisLinkByHref = (hrefName) => {
+	//console.log('select link by href: ', hrefName);
+	navMenuItems.forEach((link) => {
+		hrefLink = link.getAttribute('href').substring(1);
 
-updateMenuVisibility(mediaQuery);
+		if (hrefLink === hrefName) {
+			selectThisLinkByItem(link);
+			return;
+		}
+	});
+};
 
-//================================================================
+const deselectNavMenu = () => {
+	navMenuItems.forEach((link) => {
+		link.classList.remove('active');
+	});
+	currentSelectedNavMenuItem = '';
+	currentHash = '';
+};
 
-let scrollPosition = 0;
+const selectThisLinkByItem = (link) => {
+	if (link) {
+		deselectNavMenu();
 
-function openMenu() {
-	//console.log('open menu');
-	scrollPosition = window.scrollY;
-	BODY.style.overflow = 'hidden';
-	BODY.style.position = 'absolute';
-	BODY.style.top = `-${scrollPosition}px`;
-	BODY.style.width = '100%';
+		link.classList.add('active');
+		currentSelectedNavMenuItem = link;
+		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
+	}
+};
+
+const navLinkHandler = (e) => {
+	// console.log('%cdesktop navi cliked', colors.orange);
+	clearTimeout(scrollingTO);
+	isScrolling = true;
+
+	//-
+	selectThisLinkByItem(e.target);
+	setMenuHeight(e.target.getAttribute('href') === HOME_HASH);
+	//-
+
+	scrollingTO = setTimeout(() => {
+		isScrolling = false;
+	}, SCROLLING_BLOCKAGE_TIME);
+};
+
+const addListenersToNavMenuLinks = () => {
+	if (navMenuItems && navMenuItems.length > 0) {
+		navMenuItems.forEach((link) => {
+			link.addEventListener('click', navLinkHandler);
+		});
+	}
+};
+
+const logoClickHandler = (e) => {
+	console.log('logo click handler', document.body.id);
+	if (mnavi.isMobileMenuOn()) {
+		console.log('%cnavi mobile on!', cc.bgc.red);
+		e.preventDefault();
+	} else {
+		//console.log('logo clicked.');
+		clearTimeout(scrollingTO);
+		isScrolling = true;
+
+		//-
+		selectThisLinkByItem(homeNavMenuItem);
+		setMenuHeight(true);
+		//-
+
+		scrollingTO = setTimeout(() => {
+			isScrolling = false;
+		}, SCROLLING_BLOCKAGE_TIME);
+	}
+};
+
+const logoClickHandlerWithoutScrollSpy = (e) => {
+	console.log('logo click handler', document.body.id);
+	if (mnavi.isMobileMenuOn()) {
+		console.log('%cnavi mobile on!', cc.bgc.red);
+		e.preventDefault();
+	}
+};
+
+//TODO: on dom loaded -> run!
+//==> go!
+// addToMenuItemsHoverTrees();
+
+//TODO: !!!
+function mobileViewChangeHandler(e) {
+	/* if (e.matches) {
+	} else {
+	} */
+	console.log('mobileViewChangeHandler');
+	setMenuHeight();
 }
 
-function closeMenu(backToPreviousScrollPosition = true) {
-	//console.log('close menu - back scroll ? ', backToPreviousScrollPosition);
-	BODY.style.overflow = 'visible';
-	BODY.style.position = 'static';
-	BODY.style.top = '0px';
-	if (backToPreviousScrollPosition) window.scrollTo(0, scrollPosition);
-}
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
-//================================================================
+//TODO: tmp
+const addToMenuItemsHoverTrees = () => {
+	let template = document.querySelector('#template-contact-trees');
+	let newItem = template.content.cloneNode(true);
+	navMenuItems[3].appendChild(newItem);
+
+	template = document.querySelector('#template-aboutus-trees');
+	newItem = template.content.cloneNode(true);
+	navMenuItems[2].appendChild(newItem);
+};
+// ***

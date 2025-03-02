@@ -1,3 +1,5 @@
+'use strict';
+
 import * as helper from './helper.min.js';
 import * as cc from './console-colors.min.js';
 

@@ -1,3 +1,5 @@
+'use strict';
+
 export const colors = {
 	gray: 'font-weight: bold; color: #1B2B34;',
 	red: 'font-weight: bold; color: #EC5f67;',

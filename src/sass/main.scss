@@ -10,8 +10,8 @@
  */
 html {
 	font-size: 62.5%;
-	scroll-behavior: smooth;
 	font-family: b.$font_main;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -33,9 +33,16 @@ img {
 	position: relative;
 	top: 0; // abs.$menu_height; // -> set if nav is "fixed", now is sticky
 	height: 470px;
-	@include abs.heroImages('../img/bg/jungle-1807476_640.jpg');
 	background-position: 50% 70%;
 	z-index: -1;
+
+	&--main {
+		@include abs.heroImages('../img/bg/jungle-1807476_640.jpg');
+	}
+
+	&--contact {
+		@include abs.heroImages('../img/bg/avenue-2215317_640.jpg');
+	}
 
 	&::before {
 		content: '';
@@ -127,7 +134,7 @@ img {
 }
 
 @media (min-width: 660px) {
-	.hero {
+	.hero--main {
 		@include abs.heroImages('../img/bg/jungle-1807476_1280.jpg');
 	}
 
@@ -157,7 +164,11 @@ img {
 }
 
 @media (min-width: 1200px) {
-	.hero {
+	.hero--main {
 		@include abs.heroImages('../img/bg/jungle-1807476_1920.jpg');
+	}
+
+	.hero--contact {
+		@include abs.heroImages('../img/bg/avenue-2215317_1280.jpg');
 	}
 }

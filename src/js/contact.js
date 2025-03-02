@@ -1,4 +1,6 @@
-import * as helper from './helper.min.js';
+'use strict';
 
-//const contactNavMenuItem = document.querySelector('.nav-menu__item#contactLink');
-//selectThisLinkByItem(contactNavMenuItem);
+import * as helper from './helper.min.js';
+import * as navi from './navi.min.js';
+
+navi.settingsFromContact();
