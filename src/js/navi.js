@@ -12,7 +12,7 @@ const ROOT = document.querySelector(':root');
 const BODY = document.body;
 
 const MENU_HEIGHT = 105;
-const MENU_HEIGHT_MOBILE = 85;
+const MENU_HEIGHT_MOBILE = 80;
 const MENU_HEIGHT_MINI = 65;
 let actualMenuHeight = MENU_HEIGHT;
 //ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
@@ -22,6 +22,10 @@ const HOME = 'home';
 const SCROLLING_BLOCKAGE_TIME = 1500;
 
 const logoHomeBtn = document.querySelector('.logo');
+const logoHomeBtn__p = logoHomeBtn.querySelector('p');
+const logoHomeBtn__img = logoHomeBtn.querySelector('img');
+const header = document.querySelector('.header');
+
 const navMenuItems = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
 const homeNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#homeItem .nav-menu__link');
 const contactNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#contactItem .nav-menu__link');
@@ -56,7 +60,8 @@ export function settingsFromIndex(hashsections) {
 	window.addEventListener('scroll', updateActiveMenu);
 	mediaQuery.addEventListener('change', mobileViewChangeHandler);
 	//updateActiveMenu(); //FIXME: to jest potrzebne?
-	setMenuHeight(); //FIXME: czy da się ustawić na poczatku bez animacji?
+	//setMenuHeight(); //FIXME: czy da się ustawić na poczatku bez animacji?
+	mobileViewChangeHandler(null);
 
 	// */
 }
@@ -64,8 +69,9 @@ export function settingsFromContact() {
 	console.log('%c@@@ settingsFromContact', cc.colors.green);
 	selectThisLinkByItem(contactNavMenuItem);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
-	setMenuHeight();
-	//mediaQuery.addEventListener('change', mobileViewChangeHandler);
+	// setMenuHeight();
+	mediaQuery.addEventListener('change', mobileViewChangeHandler);
+	mobileViewChangeHandler(null);
 }
 
 function updateActiveMenu() {
@@ -103,7 +109,7 @@ function setMenuHeight(isHomeFORCE = false) {
 		if (actualScrollY > actualMenuHeight + 800 && !isHome) {
 			actualMenuHeight = MENU_HEIGHT_MINI;
 		} else {
-			//console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
+			// console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
 
 			actualMenuHeight = mnavi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
 		}
@@ -143,7 +149,7 @@ const selectThisLinkByItem = (link) => {
 };
 
 const navLinkHandler = (e) => {
-	// console.log('%cdesktop navi cliked', colors.orange);
+	console.log('%c navi cliked', colors.orange, 'isScrolling: ', isScrolling, 'scrollingTO: ', scrollingTO);
 	clearTimeout(scrollingTO);
 	isScrolling = true;
 
@@ -200,10 +206,23 @@ const logoClickHandlerWithoutScrollSpy = (e) => {
 
 //TODO: !!!
 function mobileViewChangeHandler(e) {
-	/* if (e.matches) {
+	let isMobileView;
+	if (e === null) {
+		isMobileView = window.innerWidth < 960 ? true : false;
+	} else isMobileView = !e.matches;
+
+	//console.log('mobileViewChangeHandler');
+	//console.log('%c ismobile? ' + isMobileView, cc.bgc.orange);
+
+	if (isMobileView) {
+		logoHomeBtn__p.classList.remove('anim');
+		logoHomeBtn__img.classList.remove('anim');
+		header.classList.remove('anim');
 	} else {
-	} */
-	console.log('mobileViewChangeHandler');
+		logoHomeBtn__p.classList.add('anim');
+		logoHomeBtn__img.classList.add('anim');
+		header.classList.add('anim');
+	}
 	setMenuHeight();
 }
 

@@ -54,12 +54,7 @@
 					text-decoration: none;
 
 					&:hover {
-						text-decoration-thickness: 1px;
-						text-decoration-color: abs.$contrast_color;
-						text-decoration-style: double;
-						text-decoration-line: underline;
-						text-decoration-skip-ink: none;
-						text-underline-offset: 0.15em;
+						@include abs.hover-double-green;
 					}
 				}
 
@@ -71,14 +66,34 @@
 	}
 
 	.footer__bottom {
+		position: relative;
 		width: 100%;
+		height: 100%;
 		border-top: 1px solid #707070;
 
 		p.footer__bottom-text {
 			text-align: center;
 			font-size: clamp(1.4rem, 0.18vw + 1.34rem, 1.6rem); //1.6rem;
 			letter-spacing: 0.5px;
-			padding: 2em 0;
+			padding: 2.2em 0;
+		}
+
+		p.credits {
+			position: relative;
+			bottom: 1.7em;
+			text-align: center;
+			font-size: 0.9rem;
+
+			a {
+				color: abs.$almost-black;
+				cursor: pointer;
+				text-decoration: none;
+				font-weight: bold;
+
+				&:hover {
+					@include abs.hover-double-green;
+				}
+			}
 		}
 	}
 }
@@ -119,8 +134,18 @@
 				}
 			}
 		}
+
+		.footer__bottom {
+			p.footer__bottom-text {
+				padding: 2.5em 0;
+			}
+			p.credits {
+				font-size: 1rem;
+			}
+		}
 	}
 }
+
 @media (min-width: 1260px) {
 	.footer {
 		.footer__boxes {

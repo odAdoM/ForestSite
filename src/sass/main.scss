@@ -137,6 +137,9 @@ img {
 	.hero--main {
 		@include abs.heroImages('../img/bg/jungle-1807476_1280.jpg');
 	}
+	.hero--contact {
+		@include abs.heroImages('../img/bg/avenue-2215317_1280.jpg');
+	}
 
 	.aside-adventure {
 		&__img {
@@ -169,6 +172,6 @@ img {
 	}
 
 	.hero--contact {
-		@include abs.heroImages('../img/bg/avenue-2215317_1280.jpg');
+		@include abs.heroImages('../img/bg/avenue-2215317_1920.jpg');
 	}
 }

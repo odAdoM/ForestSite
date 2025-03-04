@@ -1,3 +1,5 @@
+@use 'colors' as c;
+
 @mixin heroImages($bgImg) {
 	background-image: url($bgImg);
 	background-size: cover;
@@ -32,4 +34,14 @@
 		border-bottom: $size solid transparent;
 		border-right: $size solid $color;
 	}
+}
+
+// hover to simple links
+@mixin hover-double-green {
+	text-decoration-thickness: 1px;
+	text-decoration-color: c.$contrast_color;
+	text-decoration-style: double;
+	text-decoration-line: underline;
+	text-decoration-skip-ink: none;
+	text-underline-offset: 0.15em;
 }
