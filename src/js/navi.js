@@ -29,6 +29,7 @@ const header = document.querySelector('.header');
 const navMenuItems = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
 const homeNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#homeItem .nav-menu__link');
 const contactNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#contactItem .nav-menu__link');
+const offerNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#offerItem .nav-menu__link');
 
 let isScrolling = false;
 let scrollingTO;
@@ -66,13 +67,24 @@ export function settingsFromIndex(hashsections) {
 	// */
 }
 export function settingsFromContact() {
-	console.log('%c@@@ settingsFromContact', cc.colors.green);
+	// console.log('%c@@@ settingsFromContact', cc.colors.green);
 	selectThisLinkByItem(contactNavMenuItem);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
 	// setMenuHeight();
 	mediaQuery.addEventListener('change', mobileViewChangeHandler);
 	mobileViewChangeHandler(null);
 }
+
+export function settingsFromOffers() {
+	console.log('%c@@@ settingsFromOffers', cc.colors.teal);
+	selectThisLinkByItem(offerNavMenuItem);
+	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	// setMenuHeight();
+	mediaQuery.addEventListener('change', mobileViewChangeHandler);
+	mobileViewChangeHandler(null);
+}
+
+//==
 
 function updateActiveMenu() {
 	actualScrollY = window.scrollY;
@@ -149,7 +161,7 @@ const selectThisLinkByItem = (link) => {
 };
 
 const navLinkHandler = (e) => {
-	console.log('%c navi cliked', colors.orange, 'isScrolling: ', isScrolling, 'scrollingTO: ', scrollingTO);
+	console.log('%c navi cliked', cc.colors.orange, 'isScrolling: ', isScrolling, 'scrollingTO: ', scrollingTO);
 	clearTimeout(scrollingTO);
 	isScrolling = true;
 
@@ -204,7 +216,6 @@ const logoClickHandlerWithoutScrollSpy = (e) => {
 //==> go!
 // addToMenuItemsHoverTrees();
 
-//TODO: !!!
 function mobileViewChangeHandler(e) {
 	let isMobileView;
 	if (e === null) {
@@ -215,6 +226,7 @@ function mobileViewChangeHandler(e) {
 	//console.log('%c ismobile? ' + isMobileView, cc.bgc.orange);
 
 	if (isMobileView) {
+		//TODO: zostawić jednak animację?
 		logoHomeBtn__p.classList.remove('anim');
 		logoHomeBtn__img.classList.remove('anim');
 		header.classList.remove('anim');

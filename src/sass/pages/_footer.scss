@@ -56,6 +56,14 @@
 					&:hover {
 						@include abs.hover-double-green;
 					}
+
+					&:focus {
+						outline: none;
+					}
+					&:focus-visible {
+						outline: 2px solid abs.$contrast_color;
+						outline-offset: 0.6em;
+					}
 				}
 
 				li + li {
@@ -92,6 +100,13 @@
 
 				&:hover {
 					@include abs.hover-double-green;
+				}
+				&:focus {
+					outline: none;
+				}
+				&:focus-visible {
+					outline: 2px solid abs.$contrast_color;
+					outline-offset: 0.3em;
 				}
 			}
 		}

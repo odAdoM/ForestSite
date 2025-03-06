@@ -12,12 +12,12 @@
 
 		&-text {
 			.aboutus__title {
-				font-size: clamp(2rem, 1.1vw + 1.6rem, 3.3rem); //3.2rem;
+				font-size: clamp(2rem, 0.8vw + 1.7rem, 3.3rem); //3.2rem;
 				margin: 2em 0 0.8em;
 			}
 
 			.aboutus__text {
-				font-size: clamp(1.5rem, 0.6vw + 1.3rem, 2.2rem); //2rem;
+				font-size: clamp(1.5rem, 0.3vw + 1.4rem, 2.2rem); //2rem;
 				line-height: 1.4;
 			}
 

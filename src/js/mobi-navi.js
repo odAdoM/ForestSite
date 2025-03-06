@@ -10,7 +10,10 @@ const hamburgerBtn = toggleBtn.querySelector('.hamburger');
 const nav = document.querySelector('.nav');
 const mobileNav = nav.querySelector('.nav-menu--mobile');
 const mobileNavItems = mobileNav.querySelectorAll('.nav-menu__item');
+const treeIconAfterClick = mobileNav.querySelector('.mobile-btn-tree');
+
 let mobileScrollBlockageTO;
+let mobileClickBlockageTO;
 let isMobileViewOn;
 
 export function isMobileMenuOn() {
@@ -64,8 +67,22 @@ const resetMobileNavAnimation = () => {
 
 function mobileNavItemClickHandler() {
 	mobileNavItems.forEach((item) => {
-		item.addEventListener('click', () => {
-			resetMobileMenu();
+		item.addEventListener('click', (e) => {
+			console.log('%cmobile navi clicked', cc.bgc.orange);
+			e.preventDefault();
+			clearTimeout(mobileClickBlockageTO);
+
+			const r = e.target.getBoundingClientRect();
+			const iw = window.innerWidth;
+			treeIconAfterClick.style.top = `${r.y + r.height / 2 - 3}px`;
+			treeIconAfterClick.style.left = `${iw / 2 - r.width * 0.5}px`;
+			treeIconAfterClick.classList.add('show');
+
+			mobileClickBlockageTO = setTimeout(() => {
+				resetMobileMenu();
+				treeIconAfterClick.classList.remove('show');
+				window.location.href = e.target.href;
+			}, 250);
 		});
 	});
 }
@@ -84,6 +101,7 @@ function updateMenuVisibility(e) {
 
 function resetMobileMenu() {
 	clearTimeout(mobileScrollBlockageTO);
+	clearTimeout(mobileClickBlockageTO);
 	closeMenu(false);
 	nav.classList.remove('nav--visible');
 	mobileNav.classList.remove('nav-menu--mobile--active');

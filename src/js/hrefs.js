@@ -16,7 +16,7 @@ const MENU_ITEMS = {
 	},
 	offer: {
 		hash: '#offer',
-		page: 'offer.html',
+		page: 'offers.html',
 	},
 	contact: {
 		hash: null,
@@ -41,12 +41,17 @@ const contactNavMenuItem_mobi = document.querySelector('.nav-menu__item#contactI
 //footer links
 const footerItems = document.querySelectorAll('.footer__box-list-item > a');
 
+//find-others-btn
+const findOtherOfferBtn = document.querySelector('.find-others-btn');
+
 function setHrefs() {
 	console.log('set hrefs at: ', document.body.id);
 
 	switch (document.body.id) {
 		case 'index-page':
 			logoHomeBtn.setAttribute('href', MENU_ITEMS.home.hash);
+
+			//
 
 			homeNavMenuItem.setAttribute('href', MENU_ITEMS.home.hash);
 			aboutusNavMenuItem.setAttribute('href', MENU_ITEMS.aboutus.hash);
@@ -58,6 +63,10 @@ function setHrefs() {
 			offerNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.offer.hash);
 			contactNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.contact.page);
 
+			//
+
+			findOtherOfferBtn.setAttribute('href', MENU_ITEMS.offer.page);
+
 			//temp - for now only to the top
 			footerItems.forEach((item) => {
 				item.setAttribute('href', MENU_ITEMS.home.hash);
@@ -66,7 +75,10 @@ function setHrefs() {
 			break;
 
 		case 'contact-page':
+		case 'offers-page':
 			logoHomeBtn.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
+
+			//
 
 			homeNavMenuItem.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
 			aboutusNavMenuItem.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.aboutus.hash);

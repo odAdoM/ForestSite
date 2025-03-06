@@ -1,0 +1,53 @@
+@use 'abstracts' as abs;
+@use 'base' as b;
+
+.offers {
+	h3 {
+		font-size: clamp(1.9rem, 0.32vw + 1.8rem, 2.4rem);
+	}
+
+	table {
+		width: 80%;
+		border-collapse: collapse;
+		background: #fff;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
+		overflow: hidden;
+	}
+	th,
+	td {
+		padding: 15px;
+		text-align: center;
+		border-bottom: 1px solid #ddd;
+	}
+	th {
+		background-color: #007bff;
+		color: white;
+		font-size: 18px;
+	}
+	td {
+		font-size: 16px;
+	}
+	.plus {
+		color: green;
+		font-weight: bold;
+	}
+	.minus {
+		color: red;
+		font-weight: bold;
+	}
+	tr:last-child td {
+		border-bottom: none;
+	}
+	.select-btn {
+		background-color: #28a745;
+		color: white;
+		border: none;
+		padding: 10px 15px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.select-btn:hover {
+		background-color: #218838;
+	}
+}

@@ -44,6 +44,10 @@ img {
 		@include abs.heroImages('../img/bg/avenue-2215317_640.jpg');
 	}
 
+	&--offers {
+		@include abs.heroImages('../img/bg/trees-6742028_640.jpg');
+	}
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -140,6 +144,9 @@ img {
 	.hero--contact {
 		@include abs.heroImages('../img/bg/avenue-2215317_1280.jpg');
 	}
+	.hero--offers {
+		@include abs.heroImages('../img/bg/trees-6742028_1280.jpg');
+	}
 
 	.aside-adventure {
 		&__img {
@@ -173,5 +180,9 @@ img {
 
 	.hero--contact {
 		@include abs.heroImages('../img/bg/avenue-2215317_1920.jpg');
+	}
+
+	.hero--offers {
+		@include abs.heroImages('../img/bg/trees-6742028_1920.jpg');
 	}
 }

@@ -44,11 +44,13 @@
 	border: none;
 	background-color: c.$pure-white;
 	font-family: f.$font_main;
-	font-size: 2rem;
+	font-size: clamp(1.6rem, 0.25vw + 1.5rem, 2rem); //2rem;
 	font-weight: 400;
 	letter-spacing: 1.1px;
+	text-decoration: none;
 	border: 2px solid transparent;
 	box-shadow: 0 1px 4px rgba($color: #000000, $alpha: 0.2);
+	-webkit-tap-highlight-color: transparent;
 	cursor: pointer;
 }
 
@@ -59,18 +61,16 @@
 	margin: 1em 0;
 	overflow: hidden;
 	transition: none;
-	-webkit-tap-highlight-color: transparent;
-
-	//TODO:
-	// /* &:not(:hover) {
-	// 	transition: none;
-	// } */
 
 	&:hover {
 		transition: background-color var(--anim);
 		background-color: c.$contrast_color;
 		box-shadow: 0 3px 1px rgba($color: #0d8b35, $alpha: 0.7);
 	}
+
+	/* &:not(:hover) {
+		transition: none;
+	} */
 
 	&:active {
 		transition: none;
@@ -90,12 +90,11 @@
 .big-choice-btn {
 	@include baseBtn();
 	padding: 0.8em 2em;
-	font-size: clamp(2.1rem, 0.28vw + 2rem, 2.4rem); //2.4rem;
+	font-size: clamp(1.9rem, 0.19vw + 1.839rem, 2.2rem); //2.2rem;
 	color: c.$pure-white;
 	box-shadow: none;
 	background-color: c.$contrast_second;
 	transition: background-color 0.3s ease-out, color 0.4s;
-	-webkit-tap-highlight-color: transparent;
 
 	&:hover {
 		background-color: c.$contrast_color;
