@@ -19,9 +19,23 @@ export function insertHardSpaceBetweenLastTwoWords(text) {
 	}
 }
 
-
 export function checkActualHashLocation() {
 	let href = window.location.href;
 	let index = href.lastIndexOf('#');
 	return index !== -1 ? href.substring(index + 1) : null;
+}
+
+export function getRandomFigures(n, min, max) {
+	if (max - min + 1 < n) {
+		throw new Error('Too small range to  randomize.');
+	}
+
+	const figures = new Set();
+
+	while (figures.size < n) {
+		const newF = Math.floor(Math.random() * (max - min + 1)) + min;
+		figures.add(newF);
+	}
+
+	return [...figures];
 }

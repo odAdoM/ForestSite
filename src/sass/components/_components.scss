@@ -34,6 +34,9 @@
 .i_neg {
 	color: c.$light-gray-2;
 }
+.i_add {
+	color: c.$light-gray-2;
+}
 
 // buttons
 
@@ -48,6 +51,7 @@
 	font-weight: 400;
 	letter-spacing: 1.1px;
 	text-decoration: none;
+	text-align: center;
 	border: 2px solid transparent;
 	box-shadow: 0 1px 4px rgba($color: #000000, $alpha: 0.2);
 	-webkit-tap-highlight-color: transparent;

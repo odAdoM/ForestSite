@@ -5,9 +5,7 @@ import * as helper from './add/helper.min.js';
 import * as mnavi from './mobi-navi.min.js';
 
 //=================================================< MENU&NAV >====================================================================
-// ---
-// MENU - listeners, active state
-// ---
+
 const ROOT = document.querySelector(':root');
 const BODY = document.body;
 
@@ -84,7 +82,7 @@ export function settingsFromOffers() {
 	mobileViewChangeHandler(null);
 }
 
-//==
+//============================================================================================================================================================
 
 function updateActiveMenu() {
 	actualScrollY = window.scrollY;
@@ -239,7 +237,6 @@ function mobileViewChangeHandler(e) {
 }
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
 //TODO: tmp
 const addToMenuItemsHoverTrees = () => {
 	let template = document.querySelector('#template-contact-trees');

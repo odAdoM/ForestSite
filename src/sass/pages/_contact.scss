@@ -8,10 +8,11 @@
 			font-size: clamp(1.9rem, 0.32vw + 1.8rem, 2.4rem);
 
 			ion-icon {
+				--ionicon-stroke-width: 25px;
 				position: relative;
 				font-size: clamp(2.2rem, 0.696vw + 1.977rem, 3.3rem);
 				padding-right: 0.2em;
-				top: 0.15em;
+				top: 0.22em;
 				color: #8f8e8e; //abs.$almost-black;
 			}
 		}
@@ -83,7 +84,7 @@
 
 					input::placeholder,
 					textarea::placeholder {
-						color: abs.$deep-orange;
+						color: abs.$contrast_second;
 						font-family: b.$font_main;
 						font-weight: normal;
 					}

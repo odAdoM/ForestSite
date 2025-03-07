@@ -6,6 +6,8 @@ import * as cc from './add/console-colors.min.js';
 const asideText = document.querySelector('.aside-adventure__text');
 const ASIDE_TEXT = asideText.innerHTML;
 
+//===========================================================================================
+
 const setAsideText = (e) => {
 	if (e.matches) {
 		asideText.innerHTML = helper.insertHardSpaceBetweenLastTwoWords(ASIDE_TEXT);
@@ -14,12 +16,13 @@ const setAsideText = (e) => {
 	}
 	// console.log('actual text:', asideText.innerHTML);
 };
-const mediaQuery400 = window.matchMedia('(min-width: 400px)'); //todo
+const mediaQuery400 = window.matchMedia('(min-width: 400px)'); //TODO:
 mediaQuery400.addEventListener('change', setAsideText);
 setAsideText(mediaQuery400);
 
 //--
 
+//todo: porzadek w zmiennych
 const aside = document.querySelector('.aside-adventure');
 const ASIDE_DEFAULT_SCALE_X = getComputedStyle(aside).getPropertyValue('--scaleX');
 const ASIDE_DEFAULT_SCALE_Y = getComputedStyle(aside).getPropertyValue('--scaleY');

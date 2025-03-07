@@ -75,7 +75,6 @@ function setHrefs() {
 			break;
 
 		case 'contact-page':
-		case 'offers-page':
 			logoHomeBtn.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
 
 			//
@@ -89,6 +88,27 @@ function setHrefs() {
 			aboutusNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.aboutus.hash);
 			offerNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.offer.hash);
 			contactNavMenuItem_mobi.setAttribute('href', '#');
+
+			//temp - for now only to the top
+			footerItems.forEach((item) => {
+				item.setAttribute('href', '#');
+			});
+			break;
+
+		case 'offers-page':
+			logoHomeBtn.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
+
+			//
+
+			homeNavMenuItem.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
+			aboutusNavMenuItem.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.aboutus.hash);
+			offerNavMenuItem.setAttribute('href', '#');
+			contactNavMenuItem.setAttribute('href', MENU_ITEMS.contact.page);
+
+			homeNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.home.hash);
+			aboutusNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.home.page + MENU_ITEMS.aboutus.hash);
+			offerNavMenuItem_mobi.setAttribute('href', '#');
+			contactNavMenuItem_mobi.setAttribute('href', MENU_ITEMS.contact.page);
 
 			//temp - for now only to the top
 			footerItems.forEach((item) => {

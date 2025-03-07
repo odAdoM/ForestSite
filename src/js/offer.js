@@ -4,29 +4,23 @@ import * as helper from './add/helper.min.js';
 import * as cc from './add/console-colors.min.js';
 
 //=================================================< OFFER >====================================================================
-// OFFER - appropriate icons setting
-// ---
 
-// fontawesome
+// -- appropriate icons setting
+
+//  > fontawesome
 // const POSITIVE_ICON = 'fa-solid fa-check';
 // const NEGTIVE_ICON = 'fa-solid fa-minus';
-//tabler
+
+//  > tabler
 // const POSITIVE_ICON = 'ti ti-check';
 // const NEGTIVE_ICON = 'ti ti-minus';
-//ionic
-const POSITIVE_ICON = 'checkmark';
-const NEGTIVE_ICON = 'remove';
 
-const setLiIcons = () => {
-	const offerItems = document.querySelectorAll('.offer-boxes__box > ul > li');
-	if (offerItems && offerItems.length > 0) {
-		offerItems.forEach((li) => {
-			setRightIcon(li);
-		});
-	}
-};
-const setRightIcon = (li) => {
-	const ico = li.querySelector('span');
+//  > ionic
+const POSITIVE_ICON = 'checkmark-outline';
+const NEGTIVE_ICON = 'remove-outline';
+const ADD_ICON = 'add-outline';
+
+export function setRightIcon(ico) {
 	if (ico) {
 		if (ico.classList.contains('i_pos')) {
 			// ico.innerHTML = `<i class="${POSITIVE_ICON}"></i>`;
@@ -34,8 +28,21 @@ const setRightIcon = (li) => {
 		} else if (ico.classList.contains('i_neg')) {
 			// ico.innerHTML = `<i class="${NEGTIVE_ICON}"></i>`;
 			ico.innerHTML = `<ion-icon name="${NEGTIVE_ICON}"></ion-icon>`;
-			li.classList.add('i_neg');
+		} else if (ico.classList.contains('i_add')) {
+			// ico.innerHTML = `<i class="${NEGTIVE_ICON}"></i>`;
+			ico.innerHTML = `<ion-icon name="${ADD_ICON}"></ion-icon>`;
 		}
+	}
+}
+
+//=================================================================================================
+
+const setLiIcons = () => {
+	const offerItems = document.querySelectorAll('.offer-boxes__box > ul > li span');
+	if (offerItems && offerItems.length > 0) {
+		offerItems.forEach((i) => {
+			setRightIcon(i);
+		});
 	}
 };
 
@@ -57,8 +64,8 @@ const offerItemsAnimation = () => {
 		});
 		};
 		
-		offerItemsAnimation();
-		*/
+offerItemsAnimation();
+*/
 
 // ^^^
 // gradient animation - random on each
