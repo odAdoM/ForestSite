@@ -39,7 +39,9 @@ let actualScrollY = 0;
 let hrefLink = '';
 let allHashSections;
 
-const mediaQuery = window.matchMedia('(min-width: 960px)'); //TODO: breakpoints from breakpoints.scss in the end!
+//-
+const mediaQuery960 = window.matchMedia('(min-width: 960px)');
+//-
 
 //============================================================================================================================================================
 
@@ -48,19 +50,16 @@ export function settingsFromIndex(hashsections) {
 	allHashSections = hashsections;
 	let hash = helper.checkActualHashLocation();
 	//console.log('%c@@@ settingsFromIndex', cc.colors.red);
-	console.log('%clocation: ' + window.location.href + ' %c hash: ' + hash, cc.bgc.green, cc.bgc.purple);
+	//console.log('%clocation: ' + window.location.href + ' %c hash: ' + hash, cc.bgc.green, cc.bgc.purple);
 
-	if (hash === null || hash === HOME)
-		selectThisLinkByItem(homeNavMenuItem); //FIXME: wybrany strony lub klikniety z innej
+	if (hash === null || hash === HOME) selectThisLinkByItem(homeNavMenuItem);
 	else selectThisLinkByHref(hash);
 
 	logoHomeBtn.addEventListener('click', logoClickHandler);
 	addListenersToNavMenuLinks();
 	window.addEventListener('scroll', updateActiveMenu);
-	mediaQuery.addEventListener('change', mobileViewChangeHandler);
-	//updateActiveMenu(); //FIXME: to jest potrzebne?
-	//setMenuHeight(); //FIXME: czy da się ustawić na poczatku bez animacji?
-	mobileViewChangeHandler(null);
+	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
+	mobileViewChangeHandler(mediaQuery960); //TODO: czy ustawianie setMenuHeight bez ustawienia actualScroll dziala dobrze? moze trzeba tutaj wywoałć updateActiveMenu?
 
 	// */
 }
@@ -68,18 +67,16 @@ export function settingsFromContact() {
 	// console.log('%c@@@ settingsFromContact', cc.colors.green);
 	selectThisLinkByItem(contactNavMenuItem);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
-	// setMenuHeight();
-	mediaQuery.addEventListener('change', mobileViewChangeHandler);
-	mobileViewChangeHandler(null);
+	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
+	mobileViewChangeHandler(mediaQuery960);
 }
 
 export function settingsFromOffers() {
-	console.log('%c@@@ settingsFromOffers', cc.colors.teal);
+	// console.log('%c@@@ settingsFromOffers', cc.colors.teal);
 	selectThisLinkByItem(offerNavMenuItem);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
-	// setMenuHeight();
-	mediaQuery.addEventListener('change', mobileViewChangeHandler);
-	mobileViewChangeHandler(null);
+	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
+	mobileViewChangeHandler(mediaQuery960);
 }
 
 //============================================================================================================================================================
@@ -215,12 +212,7 @@ const logoClickHandlerWithoutScrollSpy = (e) => {
 // addToMenuItemsHoverTrees();
 
 function mobileViewChangeHandler(e) {
-	let isMobileView;
-	if (e === null) {
-		isMobileView = window.innerWidth < 960 ? true : false;
-	} else isMobileView = !e.matches;
-
-	//console.log('mobileViewChangeHandler');
+	let isMobileView = !e.matches;
 	//console.log('%c ismobile? ' + isMobileView, cc.bgc.orange);
 
 	if (isMobileView) {

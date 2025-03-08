@@ -18,6 +18,12 @@ let mobileScrollBlockageTO;
 let mobileClickBlockageTO;
 let isMobileViewOn;
 
+//-
+const mediaQuery960 = window.matchMedia('(min-width: 960px)');
+//-
+
+//====================================================================================================================================
+
 export function isMobileMenuOn() {
 	return nav.classList.contains('nav--visible') && mobileNav.classList.contains('nav-menu--mobile--active');
 }
@@ -91,32 +97,6 @@ function mobileNavItemClickHandler() {
 
 //================================================================
 
-function updateMenuVisibility(e) {
-	if (e.matches) {
-		isMobileViewOn = false;
-		nav.classList.add('nav--visible');
-	} else {
-		isMobileViewOn = true;
-		resetMobileMenu();
-	}
-}
-
-function resetMobileMenu() {
-	clearTimeout(mobileScrollBlockageTO);
-	clearTimeout(mobileClickBlockageTO);
-	closeMenu(false);
-	nav.classList.remove('nav--visible');
-	mobileNav.classList.remove('nav-menu--mobile--active');
-	hamburgerBtn.classList.remove('closed');
-	resetMobileNavAnimation();
-}
-
-//TODO: breakpoints from breakpoints.scss in the end!
-const mediaQuery = window.matchMedia('(min-width: 960px)');
-mediaQuery.addEventListener('change', updateMenuVisibility);
-
-//================================================================
-
 /* 
 	these functions allow to turn on/off moving all site content under menu
 	prevention of unwanted/not ended scrolling animation or smooth # link targeting
@@ -144,8 +124,32 @@ function closeMenu(backToPreviousScrollPosition = true) {
 }
 
 //================================================================
+
+function updateMenuVisibility(e) {
+	if (e.matches) {
+		isMobileViewOn = false;
+		nav.classList.add('nav--visible');
+	} else {
+		isMobileViewOn = true;
+		resetMobileMenu();
+	}
+}
+
+function resetMobileMenu() {
+	clearTimeout(mobileScrollBlockageTO);
+	clearTimeout(mobileClickBlockageTO);
+	closeMenu(false);
+	nav.classList.remove('nav--visible');
+	mobileNav.classList.remove('nav-menu--mobile--active');
+	hamburgerBtn.classList.remove('closed');
+	resetMobileNavAnimation();
+}
+
+//================================================================
+
 //==>
 resetMobileNavAnimation();
 mobileNavItemClickHandler();
-updateMenuVisibility(mediaQuery);
 toggleBtn.addEventListener('click', toggleClikHandler);
+mediaQuery960.addEventListener('change', updateMenuVisibility);
+updateMenuVisibility(mediaQuery960);

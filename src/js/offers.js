@@ -12,6 +12,10 @@ const allAddIconsDesktop = Array.from(tdIconsDesktop).filter((i) => i.classList.
 let allAddIcons = allAddIconsMobile;
 let addIconsTO = 0;
 
+//-
+const mediaQuery840 = window.matchMedia('(min-width: 840px)');
+//-
+
 //====================================================================================
 
 const setIcons = () => {
@@ -83,14 +87,10 @@ const resetAddIcons = () => {
 
 //--------
 
-const mediaQuery = window.matchMedia('(min-width: 840px)');
 function mobileViewChangeHandler(e) {
-	let isMobileView;
-	if (e === null) {
-		isMobileView = window.innerWidth < 840 ? true : false;
-	} else isMobileView = !e.matches;
-
+	let isMobileView = !e.matches;
 	//console.log('is mobile?%c ' + isMobileView, cc.bgc.blue);
+
 	allAddIcons = isMobileView ? allAddIconsMobile : allAddIconsDesktop;
 	setAddIconsAnimation(500);
 }
@@ -98,5 +98,5 @@ function mobileViewChangeHandler(e) {
 //==>
 navi.settingsFromOffers();
 setIcons();
-mediaQuery.addEventListener('change', mobileViewChangeHandler);
-mobileViewChangeHandler(null);
+mediaQuery840.addEventListener('change', mobileViewChangeHandler);
+mobileViewChangeHandler(mediaQuery840);

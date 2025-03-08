@@ -7,6 +7,7 @@ const asideText = document.querySelector('.aside-adventure__text');
 const ASIDE_TEXT = asideText.innerHTML;
 
 //===========================================================================================
+// at higher resolutions > 400 make last two words glued by hardspace
 
 const setAsideText = (e) => {
 	if (e.matches) {
@@ -16,13 +17,13 @@ const setAsideText = (e) => {
 	}
 	// console.log('actual text:', asideText.innerHTML);
 };
-const mediaQuery400 = window.matchMedia('(min-width: 400px)'); //TODO:
+const mediaQuery400 = window.matchMedia('(min-width: 400px)');
 mediaQuery400.addEventListener('change', setAsideText);
 setAsideText(mediaQuery400);
 
-//--
+//===========================================================================================
+// changes scale vars in animation because the smaller the width of screen the more square proportion and animations looks bad
 
-//todo: porzadek w zmiennych
 const aside = document.querySelector('.aside-adventure');
 const ASIDE_DEFAULT_SCALE_X = getComputedStyle(aside).getPropertyValue('--scaleX');
 const ASIDE_DEFAULT_SCALE_Y = getComputedStyle(aside).getPropertyValue('--scaleY');

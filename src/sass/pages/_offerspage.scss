@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'abstracts' as abs;
 @use 'base' as b;
 
@@ -172,6 +173,8 @@
 	}
 }
 
+//=========================================< MEDIA QUERIES >====================================================
+
 @media (min-width: 840px) {
 	.offers {
 		.offers-box--mobile {
@@ -210,7 +213,7 @@
 	}
 }
 
-@media (min-width: 960px) {
+@media (min-width: map.get(abs.$forest_breakpoints, 'l')/* 960px */) {
 	.offers {
 		table,
 		p.annotation {

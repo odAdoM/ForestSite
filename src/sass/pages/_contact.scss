@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'abstracts' as abs;
 @use 'base' as b;
 
@@ -133,6 +134,8 @@
 	}
 }
 
+//==================================< MQ >===============================================
+
 @media (min-width: 660px) {
 	.contact {
 		.contact-box {
@@ -153,7 +156,7 @@
 		}
 	}
 }
-@media (min-width: 1200px) {
+@media (min-width: map.get(abs.$breakpoints, 'xl')/* 1200px */) {
 	.contact {
 		.contact-box {
 			display: flex;

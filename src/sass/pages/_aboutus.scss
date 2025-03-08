@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'abstracts' as abs;
 @use 'base' as b;
 
@@ -28,7 +29,9 @@
 	}
 }
 
-@media (min-width: 960px) {
+//==================================< MQ >===============================================
+
+@media (min-width: map.get(abs.$forest_breakpoints, 'l') /* 960px */) {
 	.aboutus {
 		&__box {
 			display: flex;
