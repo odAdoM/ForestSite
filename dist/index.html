@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Park</title>
+    <meta name="description"
+        content="Najpiękniejszy park w okolicy! Tu znajdziesz niezapomniane przygody dla siebie i całej rodziny." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+
+<!--===========================< icons >=============================-->
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" /> -->
+
+<script src="https://kit.fontawesome.com/7a80431046.js" crossorigin="anonymous"></script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<!--==========================< /icons >=============================-->
+
+
+<link rel="stylesheet" href="./css/main.min.css">
+
+
+
+<!--========== favicon ============-->
+
+<!-- <link rel="icon" href="./img/logo/tree_favicon.png" type="image/x-icon"> -->
+<link rel="icon" type="image/png" href="./img/logo/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="./img/logo/favicon/favicon.svg" />
+<link rel="shortcut icon" href="./img/logo/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./img/logo/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="./img/logo/favicon/site.webmanifest" />
+
+</head>
+
+<body id="index-page">
+
+    <header class="header">
+
+    <div class="wrapper">
+
+        <div class="navi-container">
+
+            <div class="logo-box">
+                <a href="#" class="logo">
+                    <img src="./img/logo/tree_vector.svg"
+                        onerror="this.onerror=null; this.src='./img/logo/tree_bitmap.png'"
+                        alt="logo strony przedstawiające w urposzczonym kształcie drzewko iglaste">
+                    <p>Forest</p>
+                </a>
+            </div>
+
+
+            <button class="nav-toggle" aria-label="mobile toggle button">
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </button>
+
+
+            <nav class="nav">
+
+                <div class="nav-menu--desktop">
+                    <div class="nav-menu__item" id="homeItem"><a class="nav-menu__link" href="">Home</a></div>
+                    <div class="nav-menu__item" id="aboutusItem"><a class="nav-menu__link" href="">O nas</a></div>
+                    <div class="nav-menu__item" id="offerItem"><a class="nav-menu__link" href="">Oferta</a></div>
+                    <div class="nav-menu__item" id="contactItem"><a class="nav-menu__link" href="">Kontakt</a></div>
+                </div>
+
+                <div class="nav-menu--mobile">
+
+                    <svg version="1.1" class="mobile-btn-tree" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="60px" height="60px"
+                        viewBox="0 0 120 120" enable-background="new 0 0 120 120" xml:space="preserve">
+                        <path id="tree" fill="#ffffff" d="M104.154,88.159L85.789,67.356h7.043c2.07,0,3.902-1.149,4.775-3.003
+                   c0.875-1.85,0.586-3.968-0.754-5.529L78.891,37.93h6.643c2.094,0,3.979-1.229,4.799-3.128c0.807-1.869,0.426-4.046-0.977-5.538
+                   L64.006,2.259c-1.385-1.483-3.974-1.483-5.361,0L33.292,29.265c-1.403,1.492-1.782,3.668-0.975,5.538
+                   c0.818,1.899,2.705,3.128,4.798,3.128h6.641L25.793,58.828c-1.336,1.56-1.623,3.676-0.752,5.527
+                   c0.875,1.853,2.705,3.002,4.777,3.002h7.042L18.495,88.159c-1.38,1.56-1.693,3.697-0.819,5.578c0.862,1.85,2.759,3.044,4.83,3.044
+                   h31.463v5.621l-6.964,11.126c-1.223,2.447,0.555,5.325,3.289,5.325h22.061c2.734,0,4.514-2.878,3.289-5.325l-6.963-11.126v-5.621
+                   h31.463c2.072,0,3.967-1.194,4.828-3.044C105.848,91.856,105.535,89.719,104.154,88.159z" />
+                    </svg>
+
+
+                    <div class="nav-menu__item" id="homeItemMobi"><a class="nav-menu__link--mobile" href="">Home</a>
+                    </div>
+                    <div class="nav-menu__item" id="aboutusItemMobi"><a class="nav-menu__link--mobile" href="">O nas</a>
+                    </div>
+                    <div class="nav-menu__item" id="offerItemMobi"><a class="nav-menu__link--mobile" href="">Oferta</a>
+                    </div>
+                    <div class="nav-menu__item" id="contactItemMobi"><a class="nav-menu__link--mobile"
+                            href="">Kontakt</a>
+                    </div>
+                </div>
+
+            </nav>
+
+        </div>
+    </div>
+
+
+</header>
+
+<!-- ///////////////////////////////////////////////////// -->
+<!-- TREES TEMPLATES - run on desktop menu item mouse over -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+<template id="template-offer-trees">
+    <div class="trees">
+        <span class="tree one">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree nine">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree ten">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+            <span class="triangleTree tri-4"></span>
+        </span>
+    </div>
+</template>
+
+<template id="template-contact-trees">
+    <div class="trees">
+        <span class="tree three">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree eight">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+
+    </div>
+</template>
+
+<template id="template-aboutus-trees">
+    <div class="trees">
+        <span class="tree two">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree four">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+    </div>
+</template>
+
+<template id="template-home-trees">
+    <div class="trees">
+        <span class="tree five">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree six">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+        <span class="tree seven">
+            <span class="triangleTree tri-ground"></span>
+            <span class="triangleTree tri-2"></span>
+            <span class="triangleTree tri-3"></span>
+        </span>
+    </div>
+</template>
+
+<!-- ///////////////////////////////////////////////////// -->
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+<script type="module" src="./js/hrefs.min.js"></script>
+<script type="module" src="./js/mobi-navi.min.js"></script>
+<script type="module" src="./js/navi.min.js"></script>
+
+
+
+
+<!--**************************************************************************************************************************************-->
+<!-- TEMP! all trees -> to tests -->
+<!-- 
+    
+<div class="trees">
+    <span class="tree one">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+    </span>
+    <span class="tree two">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+        <span class="triangleTree tri-4"></span>
+    </span>
+    <span class="tree three">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+        <span class="triangleTree tri-4"></span>
+    </span>
+    <span class="tree four">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+        <span class="triangleTree tri-4"></span>
+    </span>
+    <span class="tree five">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+        <span class="triangleTree tri-4"></span>
+    </span>
+    <span class="tree six">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+    </span>
+    <span class="tree seven">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+    </span>
+    <span class="tree eight">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+    </span>
+    <span class="tree nine">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+    </span>
+    <span class="tree ten">
+        <span class="triangleTree tri-ground"></span>
+        <span class="triangleTree tri-2"></span>
+        <span class="triangleTree tri-3"></span>
+        <span class="triangleTree tri-4"></span>
+    </span>
+</div>
+
+-->
+
+    <section id="home" class="hero hero--main hash-section">
+
+        <div class="wrapper">
+            <div class="hero__text">
+                <p>Forest Group</p>
+                <h1>Najpiękniejszy park w&nbsp;Twojej okolicy!</h1>
+            </div>
+        </div>
+
+    </section>
+
+    <main class="main">
+
+
+        <section class="aboutus section-padding hash-section" id="aboutus">
+
+            <div class="wrapper">
+
+                <h2 class="section-heading">o nas</h2>
+
+                <div class="aboutus__box">
+                    <div class="aboutus__box-img">
+                        <!-- <img src="./img/waters-3095682_640.jpg"
+                            alt="samotne drzewko na skale na tle wody" class="aboutus__img" draggable="false"> -->
+
+                        <picture>
+                            <source srcset="./img/waters-3095682_640.jpg" media="(min-width: 960px)">
+                            <img src="./img/waters-3095682_1280.jpg" alt="samotne drzewko na skale na tle wody"
+                                class="aboutus__img" draggable="false">
+                        </picture>
+                    </div>
+                    <div class="aboutus__box-text">
+                        <h3 class="aboutus__title">Niezapomniane przygody</h3>
+                        <p class="aboutus__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+                            facilis? Reiciendis
+                            consequuntur iusto veritatis, voluptates fuga blanditiis excepturi cum dicta iure? Quidem
+                            harum
+                            cupiditate quae magnam fugit facere numquam debitis consequatur vero laboriosam.</p>
+                        <p class="aboutus__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi!</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="aside-adventure">
+            <div class="aside-adventure__img">
+            </div>
+            <p class="aside-adventure__text">Przygoda dla całej rodziny</p>
+        </section>
+
+
+        <section class="offer section-padding hash-section" id="offer">
+            <div class="wrapper">
+
+                <h2 class="section-heading">oferta</h2>
+
+                <h3>Wybierz jedną z naszych wspaniałych ofert!</h3>
+
+                <div class="offer-boxes">
+
+                    <div class="offer-boxes__box">
+                        <h4>Demo</h4>
+                        <p class="price">0 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem </p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
+                    <div class="offer-boxes__box">
+                        <h4>Standard</h4>
+                        <p class="price">99 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_neg"></span>opcja poza pakietem </p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
+                    <div class="offer-boxes__box">
+                        <h4>Premium</h4>
+                        <p class="price">499 zł</p>
+                        <ul>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                            <li class="offer-item">
+                                <p><span class="i_pos"></span>opcja w pakiecie</p>
+                            </li>
+                        </ul>
+                        <button class="std-choice-btn">Wybierz</button>
+                    </div>
+
+                </div>
+
+                <div class="find-others">
+                    <h3 class="find-others-header">Znajdź inną idealnie dopasowaną do Twoich potrzeb ofertę:</h3>
+                    <a class="find-others-btn big-choice-btn" href="">Wszystkie oferty</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+
+    <div class="wrapper">
+
+        <div class="footer__boxes">
+
+            <div class="footer__box footer__box--logo">
+                <img src="./img/logo/tree_vector.svg" onerror="this.onerror=null; this.src='./img/logo/tree_bitmap.png'"
+                    alt="logo strony przedstawiające w urposzczonym kształcie drzewko iglaste">
+                <h3 class="footer__box-title">Forest</h3>
+            </div>
+
+            <div class="footer__box footer__box--links">
+                <h3 class="footer__box-title">O nas</h3>
+                <ul class="footer__box-list">
+                    <li class="footer__box-list-item"><a href="">Historia</a></li>
+                    <li class="footer__box-list-item"><a href="">Parki</a></li>
+                    <li class="footer__box-list-item"><a href="">Opinie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__box footer__box--links">
+                <h3 class="footer__box-title">Nasza firma</h3>
+                <ul class="footer__box-list">
+                    <li class="footer__box-list-item"><a href="">Praca</a></li>
+                    <li class="footer__box-list-item"><a href="">Kadry</a></li>
+                    <li class="footer__box-list-item"><a href="">Zarząd</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__box footer__box--links">
+                <h3 class="footer__box-title">Dokumenty</h3>
+                <ul class="footer__box-list">
+                    <li class="footer__box-list-item"><a href="">Wnioski</a></li>
+                    <li class="footer__box-list-item"><a href="">Rezerwacje</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer__bottom">
+        <p class="footer__bottom-text">&copy; <span class="footer__year"></span> - Forest Group Company Ltd.</p>
+        <p class="credits">Zdjęcia dzięki <a href="https://pixabay.com" target="_blank" rel="noopener">Pixabay</a> |
+            Autorzy na poszczególnych stronach.</p>
+    </div>
+
+</footer>
+
+
+<script type="module" src="./js/footer.min.js"></script>
+
+    <script type="module" src="./js/aside.min.js"></script>
+    <script type="module" src="./js/offer.min.js"></script>
+    <script type="module" src="./js/main.min.js"></script>
+
+</body>
+
+
+</html>
