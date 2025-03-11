@@ -267,13 +267,9 @@ section {
 
 //=========================================< MEDIA QUERIES >====================================================
 
-@media (min-width: map.get(abs.$forest_breakpoints, 'm')/* 660px */) {
-	.header {
-		.navi-container {
-			text-align: center;
-		}
-	}
-}
+// @media (min-width: map.get(abs.$forest_breakpoints, 'm')/* 660px */) {
+// }
+
 @media (min-width: map.get(abs.$forest_breakpoints, 'l')/* 960px */) {
 	.header {
 		height: abs.$menu_height;
@@ -313,6 +309,7 @@ section {
 					justify-content: flex-end;
 
 					.nav-menu__item {
+						position: relative;
 						height: 100%;
 						overflow: hidden;
 

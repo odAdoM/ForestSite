@@ -23,7 +23,7 @@ const clearError = (input) => {
 
 const checkForm = (input) => {
 	input.forEach((el) => {
-		if (el.value === '') {
+		if (el.value.trim() === '') {
 			showError(el, el.placeholder);
 		} else {
 			clearError(el);
@@ -52,7 +52,7 @@ const validateEmail = (email) => {
 	const re =
 		/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	if (re.test(email.value)) clearError(email);
+	if (re.test(email.value.trim())) clearError(email);
 	else showError(email, 'E-mail jest niepoprawny.');
 };
 
@@ -61,7 +61,7 @@ const validateName = (forname) => {
 		/^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?:[- ](?:[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+))* [A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?:[- ](?:[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+))*$/;
 	/* bez PL:  /^[A-Z][a-z]+ [A-Z][a-z]+$/; */
 
-	if (re.test(forname.value)) clearError(forname);
+	if (re.test(forname.value.trim())) clearError(forname);
 	else showError(forname, 'Imię i nazwisko są niepoprawne.');
 };
 

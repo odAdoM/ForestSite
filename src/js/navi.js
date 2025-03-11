@@ -24,10 +24,11 @@ const logoHomeBtn__p = logoHomeBtn.querySelector('p');
 const logoHomeBtn__img = logoHomeBtn.querySelector('img');
 const header = document.querySelector('.header');
 
-const navMenuItems = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
-const homeNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#homeItem .nav-menu__link');
-const contactNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#contactItem .nav-menu__link');
-const offerNavMenuItem = document.querySelector('.nav-menu--desktop .nav-menu__item#offerItem .nav-menu__link');
+const navMenuLinks_hashed = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
+const navMenuLinks = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link');
+const homeNavMenuLink = document.querySelector('.nav-menu--desktop .nav-menu__item#homeItem .nav-menu__link');
+const contactNavMenuLink = document.querySelector('.nav-menu--desktop .nav-menu__item#contactItem .nav-menu__link');
+const offerNavMenuLink = document.querySelector('.nav-menu--desktop .nav-menu__item#offerItem .nav-menu__link');
 
 let isScrolling = false;
 let scrollingTO;
@@ -52,7 +53,7 @@ export function settingsFromIndex(hashsections) {
 	//console.log('%c@@@ settingsFromIndex', cc.colors.red);
 	//console.log('%clocation: ' + window.location.href + ' %c hash: ' + hash, cc.bgc.green, cc.bgc.purple);
 
-	if (hash === null || hash === HOME) selectThisLinkByItem(homeNavMenuItem);
+	if (hash === null || hash === HOME) selectThisLinkByItem(homeNavMenuLink);
 	else selectThisLinkByHref(hash);
 
 	logoHomeBtn.addEventListener('click', logoClickHandler);
@@ -65,15 +66,16 @@ export function settingsFromIndex(hashsections) {
 }
 export function settingsFromContact() {
 	// console.log('%c@@@ settingsFromContact', cc.colors.green);
-	selectThisLinkByItem(contactNavMenuItem);
+	selectThisLinkByItem(contactNavMenuLink);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	addListenersToNavMenuLinks(true);
 	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
 	mobileViewChangeHandler(mediaQuery960);
 }
 
 export function settingsFromOffers() {
 	// console.log('%c@@@ settingsFromOffers', cc.colors.teal);
-	selectThisLinkByItem(offerNavMenuItem);
+	selectThisLinkByItem(offerNavMenuLink);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
 	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
 	mobileViewChangeHandler(mediaQuery960);
@@ -110,24 +112,28 @@ function updateActiveMenu() {
 
 function setMenuHeight(isHomeFORCE = false) {
 	let isHome = isHomeFORCE ? true : currentHash === HOME ? true : false;
+	let treesSize;
 	//console.log(`%cisHome? ${isHome}`, cc.bgc.red, currentHash);
 
 	if (!mnavi.isMobileMenuOn()) {
 		if (actualScrollY > actualMenuHeight + 800 && !isHome) {
 			actualMenuHeight = MENU_HEIGHT_MINI;
+			treesSize = 3;
 		} else {
 			// console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
 
 			actualMenuHeight = mnavi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
+			treesSize = 4;
 		}
 		//console.log('%c actualMenuHeight', cc.bgc.orange, actualMenuHeight);
 		ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
+		ROOT.style.setProperty('--size', `${treesSize}px`);
 	}
 }
 
 const selectThisLinkByHref = (hrefName) => {
 	//console.log('select link by href: ', hrefName);
-	navMenuItems.forEach((link) => {
+	navMenuLinks_hashed.forEach((link) => {
 		hrefLink = link.getAttribute('href').substring(1);
 
 		if (hrefLink === hrefName) {
@@ -138,7 +144,7 @@ const selectThisLinkByHref = (hrefName) => {
 };
 
 const deselectNavMenu = () => {
-	navMenuItems.forEach((link) => {
+	navMenuLinks_hashed.forEach((link) => {
 		link.classList.remove('active');
 	});
 	currentSelectedNavMenuItem = '';
@@ -152,6 +158,12 @@ const selectThisLinkByItem = (link) => {
 		link.classList.add('active');
 		currentSelectedNavMenuItem = link;
 		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
+
+		try {
+			link.querySelector('.trees').classList.remove('over-state');
+		} catch (error) {
+			console.log(error);
+		}
 	}
 };
 
@@ -170,18 +182,33 @@ const navLinkHandler = (e) => {
 	}, SCROLLING_BLOCKAGE_TIME);
 };
 
-const addListenersToNavMenuLinks = () => {
-	if (navMenuItems && navMenuItems.length > 0) {
-		navMenuItems.forEach((link) => {
-			link.addEventListener('click', navLinkHandler);
+const addListenersToNavMenuLinks = (onlyHovers = false) => {
+	if (!onlyHovers) {
+		if (navMenuLinks_hashed && navMenuLinks_hashed.length > 0) {
+			navMenuLinks_hashed.forEach((link) => {
+				link.addEventListener('click', navLinkHandler);
+			});
+		}
+	}
+
+	if (navMenuLinks && navMenuLinks.length > 0) {
+		navMenuLinks.forEach((link) => {
+			link.addEventListener('mouseover', (e) => {
+				if (!e.target.classList.contains('active')) {
+					e.target.querySelector('.trees').classList.add('over-state');
+				}
+			});
+			link.addEventListener('mouseout', (e) => {
+				e.target.querySelector('.trees').classList.remove('over-state');
+			});
 		});
 	}
 };
 
 const logoClickHandler = (e) => {
-	console.log('logo click handler', document.body.id);
+	//console.log('logo click handler', document.body.id);
 	if (mnavi.isMobileMenuOn()) {
-		console.log('%cnavi mobile on!', cc.bgc.red);
+		//console.log('%cnavi mobile on!', cc.bgc.red);
 		e.preventDefault();
 	} else {
 		//console.log('logo clicked.');
@@ -189,7 +216,7 @@ const logoClickHandler = (e) => {
 		isScrolling = true;
 
 		//-
-		selectThisLinkByItem(homeNavMenuItem);
+		selectThisLinkByItem(homeNavMenuLink);
 		setMenuHeight(true);
 		//-
 
@@ -200,16 +227,12 @@ const logoClickHandler = (e) => {
 };
 
 const logoClickHandlerWithoutScrollSpy = (e) => {
-	console.log('logo click handler', document.body.id);
+	//console.log('logo click handler', document.body.id);
 	if (mnavi.isMobileMenuOn()) {
-		console.log('%cnavi mobile on!', cc.bgc.red);
+		//console.log('%cnavi mobile on!', cc.bgc.red);
 		e.preventDefault();
 	}
 };
-
-//TODO: on dom loaded -> run!
-//==> go!
-// addToMenuItemsHoverTrees();
 
 function mobileViewChangeHandler(e) {
 	let isMobileView = !e.matches;
@@ -228,15 +251,29 @@ function mobileViewChangeHandler(e) {
 	setMenuHeight();
 }
 
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&| TREES |&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //TODO: tmp
 const addToMenuItemsHoverTrees = () => {
-	let template = document.querySelector('#template-contact-trees');
-	let newItem = template.content.cloneNode(true);
-	navMenuItems[3].appendChild(newItem);
+	const navis = document.querySelectorAll('.nav-menu--desktop > .nav-menu__item > .nav-menu__link');
+	let template;
+	let newItem;
+
+	template = document.querySelector('#template-home-trees');
+	newItem = template.content.cloneNode(true);
+	navis[0].appendChild(newItem);
 
 	template = document.querySelector('#template-aboutus-trees');
 	newItem = template.content.cloneNode(true);
-	navMenuItems[2].appendChild(newItem);
+	navis[1].appendChild(newItem);
+
+	template = document.querySelector('#template-offer-trees');
+	newItem = template.content.cloneNode(true);
+	navis[2].appendChild(newItem);
+
+	template = document.querySelector('#template-contact-trees');
+	newItem = template.content.cloneNode(true);
+	navis[3].appendChild(newItem);
 };
+//TODO: on dom loaded -> run!
+addToMenuItemsHoverTrees();
 // ***
