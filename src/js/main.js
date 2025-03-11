@@ -1,6 +1,6 @@
 'use strict';
 
-import * as cc from './add/console-colors.min.js';
+//import * as cc from './add/console-colors.min.js';
 import * as navi from './navi.min.js';
 
 //====================================================================================================================

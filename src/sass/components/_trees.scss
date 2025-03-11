@@ -120,13 +120,13 @@ $easing: ease-in;
 	&.over-state .tree.two {
 		animation-play-state: running;
 	}
+	&.over-state .tree.eight {
+		animation-play-state: running;
+	}
 	&.over-state .tree.nine {
 		animation-play-state: running;
 	}
 	&.over-state .tree.ten {
-		animation-play-state: running;
-	}
-	&.over-state .tree.eight {
 		animation-play-state: running;
 	}
 }
@@ -264,6 +264,7 @@ $easing: ease-in;
 		transform: rotate(0);
 	}
 	15% {
+		transform: rotate(-4deg);
 	}
 	40% {
 		transform: rotate(5deg);

@@ -1,7 +1,7 @@
 'use strict';
 
+//import * as cc from './add/console-colors.min.js';
 import * as helper from './add/helper.min.js';
-import * as cc from './add/console-colors.min.js';
 import * as navi from './navi.min.js';
 import * as offer from './offer.min.js';
 
@@ -68,8 +68,8 @@ const setAddIconsAnimation = (delay) => {
 				allAddIcons[n].parentNode.appendChild(newIco);
 			});
 
-			setAddIconsAnimation(5000);
-		}, 10);
+			setAddIconsAnimation(4000);
+		}, 50);
 	}, delay);
 };
 
@@ -92,7 +92,7 @@ function mobileViewChangeHandler(e) {
 	//console.log('is mobile?%c ' + isMobileView, cc.bgc.blue);
 
 	allAddIcons = isMobileView ? allAddIconsMobile : allAddIconsDesktop;
-	setAddIconsAnimation(500);
+	setAddIconsAnimation(100);
 }
 
 //==>

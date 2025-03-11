@@ -20,9 +20,9 @@ const HOME = 'home';
 const SCROLLING_BLOCKAGE_TIME = 1500;
 
 const logoHomeBtn = document.querySelector('.logo');
-const logoHomeBtn__p = logoHomeBtn.querySelector('p');
-const logoHomeBtn__img = logoHomeBtn.querySelector('img');
-const header = document.querySelector('.header');
+//const logoHomeBtn__p = logoHomeBtn.querySelector('p');
+//const logoHomeBtn__img = logoHomeBtn.querySelector('img');
+//const header = document.querySelector('.header');
 
 const navMenuLinks_hashed = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link[href^="#"]');
 const navMenuLinks = document.querySelectorAll('.nav-menu--desktop .nav-menu__item .nav-menu__link');
@@ -57,10 +57,12 @@ export function settingsFromIndex(hashsections) {
 	else selectThisLinkByHref(hash);
 
 	logoHomeBtn.addEventListener('click', logoClickHandler);
+	addToMenuItemsHoverTrees();
 	addListenersToNavMenuLinks();
+	// addTransitionToMenuBar();
 	window.addEventListener('scroll', updateActiveMenu);
 	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
-	mobileViewChangeHandler(mediaQuery960); //TODO: czy ustawianie setMenuHeight bez ustawienia actualScroll dziala dobrze? moze trzeba tutaj wywoałć updateActiveMenu?
+	mobileViewChangeHandler(mediaQuery960);
 
 	// */
 }
@@ -68,7 +70,9 @@ export function settingsFromContact() {
 	// console.log('%c@@@ settingsFromContact', cc.colors.green);
 	selectThisLinkByItem(contactNavMenuLink);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	addToMenuItemsHoverTrees();
 	addListenersToNavMenuLinks(true);
+	// addTransitionToMenuBar();
 	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
 	mobileViewChangeHandler(mediaQuery960);
 }
@@ -77,6 +81,9 @@ export function settingsFromOffers() {
 	// console.log('%c@@@ settingsFromOffers', cc.colors.teal);
 	selectThisLinkByItem(offerNavMenuLink);
 	logoHomeBtn.addEventListener('click', logoClickHandlerWithoutScrollSpy);
+	addToMenuItemsHoverTrees();
+	addListenersToNavMenuLinks(true);
+	// addTransitionToMenuBar();
 	mediaQuery960.addEventListener('change', mobileViewChangeHandler);
 	mobileViewChangeHandler(mediaQuery960);
 }
@@ -113,21 +120,21 @@ function updateActiveMenu() {
 function setMenuHeight(isHomeFORCE = false) {
 	let isHome = isHomeFORCE ? true : currentHash === HOME ? true : false;
 	let treesSize;
-	//console.log(`%cisHome? ${isHome}`, cc.bgc.red, currentHash);
+	//console.log(`%cisHome? ${isHome}`, cc.bgc.red, 'currentHash: ', currentHash);
 
 	if (!mnavi.isMobileMenuOn()) {
-		if (actualScrollY > actualMenuHeight + 800 && !isHome) {
+		// this part makes the menu height even smaller; it's good for long sites, but here it makes too much mess
+		// if it's on -> add transition class (addTransitionToMenuBar) to menu bar
+		/* if (window.scrollY > actualMenuHeight + 800 && !isHome) {
 			actualMenuHeight = MENU_HEIGHT_MINI;
 			treesSize = 3;
-		} else {
-			// console.log(`%c is mobile?%c ${navi.isMobileOn()}`, cc.colors.orange, cc.bgc.teal);
+		} else { */
+		actualMenuHeight = mnavi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
+		//treesSize = 4;
+		//}
 
-			actualMenuHeight = mnavi.isMobileOn() ? MENU_HEIGHT_MOBILE : MENU_HEIGHT;
-			treesSize = 4;
-		}
-		//console.log('%c actualMenuHeight', cc.bgc.orange, actualMenuHeight);
 		ROOT.style.setProperty('--menu-height', `${actualMenuHeight}px`);
-		ROOT.style.setProperty('--size', `${treesSize}px`);
+		//ROOT.style.setProperty('--size', `${treesSize}px`);
 	}
 }
 
@@ -159,10 +166,9 @@ const selectThisLinkByItem = (link) => {
 		currentSelectedNavMenuItem = link;
 		currentHash = currentSelectedNavMenuItem.getAttribute('href').substring(1);
 
-		try {
+		const t = link.querySelector('.trees');
+		if (t != null) {
 			link.querySelector('.trees').classList.remove('over-state');
-		} catch (error) {
-			console.log(error);
 		}
 	}
 };
@@ -235,45 +241,52 @@ const logoClickHandlerWithoutScrollSpy = (e) => {
 };
 
 function mobileViewChangeHandler(e) {
-	let isMobileView = !e.matches;
+	/* let isMobileView = !e.matches;
 	//console.log('%c ismobile? ' + isMobileView, cc.bgc.orange);
 
 	if (isMobileView) {
-		//TODO: zostawić jednak animację?
-		logoHomeBtn__p.classList.remove('anim');
-		logoHomeBtn__img.classList.remove('anim');
-		header.classList.remove('anim');
+		removeTransitionToMenuBar();
 	} else {
-		logoHomeBtn__p.classList.add('anim');
-		logoHomeBtn__img.classList.add('anim');
-		header.classList.add('anim');
-	}
+		addTransitionToMenuBar();
+	} */
+
 	setMenuHeight();
 }
 
+/* 
+function addTransitionToMenuBar() {
+	logoHomeBtn__p.classList.add('anim');
+	logoHomeBtn__img.classList.add('anim');
+	header.classList.add('anim');
+}
+function removeTransitionToMenuBar() {
+	logoHomeBtn__p.classList.remove('anim');
+	logoHomeBtn__img.classList.remove('anim');
+	header.classList.remove('anim');
+} 
+*/
+
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&| TREES |&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//TODO: tmp
+
 const addToMenuItemsHoverTrees = () => {
-	const navis = document.querySelectorAll('.nav-menu--desktop > .nav-menu__item > .nav-menu__link');
+	const links = document.querySelectorAll('.nav-menu--desktop > .nav-menu__item > .nav-menu__link');
 	let template;
 	let newItem;
 
 	template = document.querySelector('#template-home-trees');
 	newItem = template.content.cloneNode(true);
-	navis[0].appendChild(newItem);
+	links[0].appendChild(newItem);
 
 	template = document.querySelector('#template-aboutus-trees');
 	newItem = template.content.cloneNode(true);
-	navis[1].appendChild(newItem);
+	links[1].appendChild(newItem);
 
 	template = document.querySelector('#template-offer-trees');
 	newItem = template.content.cloneNode(true);
-	navis[2].appendChild(newItem);
+	links[2].appendChild(newItem);
 
 	template = document.querySelector('#template-contact-trees');
 	newItem = template.content.cloneNode(true);
-	navis[3].appendChild(newItem);
+	links[3].appendChild(newItem);
 };
-//TODO: on dom loaded -> run!
-addToMenuItemsHoverTrees();
-// ***
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&| /TREES |&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&

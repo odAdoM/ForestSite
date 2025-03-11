@@ -23,9 +23,9 @@ section {
 		backdrop-filter: blur(var(--blur));
 	}
 
-	&.anim {
+	/* &.anim {
 		transition: height $time_anim;
-	}
+	} */
 
 	&::before {
 		content: '';
@@ -71,9 +71,9 @@ section {
 					margin-left: 0.1em;
 					pointer-events: none;
 
-					&.anim {
+					/* &.anim {
 						transition: font-size $time_anim; //0.3s ease; //cubic-bezier(0.19, 1, 0.22, 1);
-					}
+					} */
 				}
 
 				img {
