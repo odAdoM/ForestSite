@@ -37,15 +37,15 @@ img {
 	z-index: -1;
 
 	&--main {
-		@include abs.heroImages('../img/bg/jungle-1807476_640.jpg');
+		@include abs.heroImages('../img/bg/jungle-1807476_640.webp');
 	}
 
 	&--contact {
-		@include abs.heroImages('../img/bg/avenue-2215317_640.jpg');
+		@include abs.heroImages('../img/bg/avenue-2215317_640.webp');
 	}
 
 	&--offers {
-		@include abs.heroImages('../img/bg/trees-6742028_640.jpg');
+		@include abs.heroImages('../img/bg/trees-6742028_640.webp');
 	}
 
 	&::before {
@@ -105,7 +105,7 @@ img {
 		height: 100%;
 		top: 0;
 		left: 0;
-		@include abs.heroImagesWithGradient('../img/bg/girl-5785590_640.jpg', abs.$dark-gradient);
+		@include abs.heroImagesWithGradient('../img/bg/girl-5785590_640.webp', abs.$dark-gradient);
 		transition: transform 0.3s ease-out;
 	}
 
@@ -139,18 +139,18 @@ img {
 
 @media (min-width: 660px) {
 	.hero--main {
-		@include abs.heroImages('../img/bg/jungle-1807476_1280.jpg');
+		@include abs.heroImages('../img/bg/jungle-1807476_1280.webp');
 	}
 	.hero--contact {
-		@include abs.heroImages('../img/bg/avenue-2215317_1280.jpg');
+		@include abs.heroImages('../img/bg/avenue-2215317_1280.webp');
 	}
 	.hero--offers {
-		@include abs.heroImages('../img/bg/trees-6742028_1280.jpg');
+		@include abs.heroImages('../img/bg/trees-6742028_1280.webp');
 	}
 
 	.aside-adventure {
 		&__img {
-			@include abs.heroImagesWithGradient('../img/bg/girl-5785590_1280.jpg', abs.$dark-gradient);
+			@include abs.heroImagesWithGradient('../img/bg/girl-5785590_1280.webp', abs.$dark-gradient);
 		}
 		&__text {
 			max-width: 85%;
@@ -175,14 +175,14 @@ img {
 
 @media (min-width: 1200px) {
 	.hero--main {
-		@include abs.heroImages('../img/bg/jungle-1807476_1920.jpg');
+		@include abs.heroImages('../img/bg/jungle-1807476_1920.webp');
 	}
 
 	.hero--contact {
-		@include abs.heroImages('../img/bg/avenue-2215317_1920.jpg');
+		@include abs.heroImages('../img/bg/avenue-2215317_1920.webp');
 	}
 
 	.hero--offers {
-		@include abs.heroImages('../img/bg/trees-6742028_1920.jpg');
+		@include abs.heroImages('../img/bg/trees-6742028_1920.webp');
 	}
 }
