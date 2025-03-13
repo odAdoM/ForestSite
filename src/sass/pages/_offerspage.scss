@@ -80,11 +80,12 @@
 		//content: '\f090';
 		// font-family: 'tabler-icons';
 		// content: '\fc76';
-		// font-family: 'Material Symbols Outlined';
-		// content: '\ea77';
-		font-family: 'Phosphor';
-		content: '\E428';
+		font-family: 'Material Symbols Outlined';
+		content: '\ea77';
+		//font-family: 'Phosphor';
+		//content: '\E428';
 		font-size: 2.3rem;
+		font-weight: 400;
 		color: abs.$almost-black; //#2e4b2e;
 		-webkit-font-smoothing: antialiased;
 	}

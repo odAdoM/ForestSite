@@ -80,6 +80,7 @@ section {
 					aspect-ratio: 1;
 					margin-left: -5px;
 					height: calc(abs.$menu_height * 0.36);
+					width: calc(abs.$menu_height * 0.36);
 					pointer-events: none;
 
 					&.anim {
