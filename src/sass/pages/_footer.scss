@@ -93,7 +93,8 @@
 			text-align: center;
 			font-family: b.$font_small;
 			font-size: 0.8rem;
-			letter-spacing: 0.5px;
+			font-weight: 400;
+			letter-spacing: 0.1em;
 
 			a {
 				color: abs.$almost-black;
@@ -160,7 +161,7 @@
 				padding: 2.5em 0;
 			}
 			p.credits {
-				font-size: 1rem;
+				font-size: 0.9rem;
 			}
 		}
 	}

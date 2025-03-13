@@ -63,7 +63,7 @@
 
 	.std-choice-btn.iconed {
 		text-indent: 0;
-		width: 75%;
+		width: 33%;
 		margin: 1em 0;
 		font-size: clamp(1.4rem, 0.2vw + 1.34rem, 1.7rem);
 		letter-spacing: 0.3px;
@@ -76,11 +76,16 @@
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
-		content: '\f090';
-		font-family: 'Font Awesome 6 Free';
-		font-weight: 700;
-		font-size: clamp(1.8rem, 0.417vw + 1.4rem, 2.2rem);
-		color: #2e4b2e;
+		//font-family: 'Font Awesome 6 Free';
+		//content: '\f090';
+		// font-family: 'tabler-icons';
+		// content: '\fc76';
+		// font-family: 'Material Symbols Outlined';
+		// content: '\ea77';
+		font-family: 'Phosphor';
+		content: '\E428';
+		font-size: 2.3rem;
+		color: abs.$almost-black; //#2e4b2e;
 		-webkit-font-smoothing: antialiased;
 	}
 
