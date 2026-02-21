@@ -29,5 +29,8 @@
 		"gulp-uglify": "^3.0.2",
 		"sass": "^1.79.4"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"overrides": {
+		"fast-xml-parser": "^5.3.6"
+	}
 }
