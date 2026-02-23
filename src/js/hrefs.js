@@ -45,7 +45,7 @@ const footerItems = document.querySelectorAll('.footer__box-list-item > a');
 const findOtherOfferBtn = document.querySelector('.find-others-btn');
 
 function setHrefs() {
-	console.log('set hrefs at: ', document.body.id);
+	//console.log('set hrefs at: ', document.body.id);
 
 	switch (document.body.id) {
 		case 'index-page':

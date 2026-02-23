@@ -1,7 +1,6 @@
 'use strict';
 
 //import * as helper from './add/helper.min.js';
-import * as cc from './add/console-colors.min.js';
 
 //====================================================================================================================================
 
@@ -76,7 +75,7 @@ const resetMobileNavAnimation = () => {
 function mobileNavItemClickHandler() {
 	mobileNavItems.forEach((item) => {
 		item.addEventListener('click', (e) => {
-			console.log('%cmobile navi clicked', cc.bgc.orange);
+			//console.log('%cmobile navi clicked', cc.bgc.orange);
 			e.preventDefault();
 			clearTimeout(mobileClickBlockageTO);
 

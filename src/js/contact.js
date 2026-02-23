@@ -42,10 +42,9 @@ const checkErrors = () => {
 		}
 	});
 
-	console.log(errorCount);
+	//console.log(errorCount);
 	if (errorCount === 0) return false;
 	else return true;
-	// return false;
 };
 
 const validateEmail = (email) => {
@@ -75,7 +74,7 @@ sendBtn.addEventListener('click', (e) => {
 	validateName(formName);
 	validateEmail(email);
 	if (!checkErrors()) {
-		console.log('ślij!');
+		//console.log('ślij!');
 	}
 });
 

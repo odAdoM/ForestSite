@@ -1,6 +1,5 @@
 'use strict';
 
-import * as cc from './add/console-colors.min.js';
 import * as helper from './add/helper.min.js';
 import * as mnavi from './mobi-navi.min.js';
 
@@ -174,7 +173,7 @@ const selectThisLinkByItem = (link) => {
 };
 
 const navLinkHandler = (e) => {
-	console.log('%c navi cliked', cc.colors.orange, 'isScrolling: ', isScrolling, 'scrollingTO: ', scrollingTO);
+	//console.log('%c navi cliked', cc.colors.orange, 'isScrolling: ', isScrolling, 'scrollingTO: ', scrollingTO);
 	clearTimeout(scrollingTO);
 	isScrolling = true;
 
